@@ -46,7 +46,8 @@ public class QuestaoActivity extends Activity implements OnClickListener {
 			e1.printStackTrace();
 		}
 		try {
-			qLista = ApplicationContextProvider.getBD().getQuestionSet(id_cat, nivel_atual, 5);
+			//qLista = ApplicationContextProvider.getBD().getQuestionSet(id_cat, nivel_atual, 5);
+			qLista = ApplicationContextProvider.getBD().getQuestionSet(1, 2, 5);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -133,6 +134,8 @@ public class QuestaoActivity extends Activity implements OnClickListener {
 				setQuestions();
 			}
 			else{
+				nivel_atual = nivel_atual + 1;
+				ApplicationContextProvider.getBD().atualizaNivelCategoria(id_cat, nivel_atual);
 				mostrarMsgGanhou();
 				//ImageButton level2 = (ImageButton)findViewById(R.id.imgBtnNivel2);
 				//level2.setEnabled(true);
