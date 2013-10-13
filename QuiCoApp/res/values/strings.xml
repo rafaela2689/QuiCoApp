@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">QuiCoApp</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_categoria">CategoriaActivity</string>
+    <string name="title_activity_nivel">NivelActivity</string>
+    <string name="title_activity_questao">QuestaoActivity</string>
+    <string name="title_activity_sobre">SobreActivity</string>
+    <string name="title_activity_ajuda">AjudaActivity</string>
+    <string name="quiz_copa">Copa Quiz</string>
+    <string name="bt_iniciar">Iniciar</string>
+    <string name="bt_ajuda">Ajuda</string>
+    <string name="bt_sobre">Sobre</string>
+    <string name="tv_ajuda1">1. Selecione uma categoria;</string>
+    <string name="tv_ajuda2">2. Selecione um nível desbloqueado;</string>
+    <string name="tv_ajuda3"> 3. Clique na resposta que acha certa, o próximo nível será desbloqueado, somente após acertar dez perguntas de um mesmo nível.</string>
+    <string name="tv_instrucoes">Instruções:</string>
+    <string name="tv_sobre">Copa Quiz Versão 1.0</string>
+    <string name="tv_sobre_team">Desenvolvido por:</string>
+    <string name="tv_rafaela">Rafaela Cavalcante</string>
+    <string name="tv_adilio"> Adílio Figueiredo</string>
+    <string name="tv_danilo">Danilo Cezar Araújo</string>
+    <string name="tv_sobre_public">Publicado por: UniStore</string>
+    <string name="bt_cat_selecao">Seleções</string>
+    <string name="bt_cat_cidade_sede">Cidades Sede</string>
+    <string name="bt_cat_jogadores">Jogadores</string>
+    
+    <string name="msgGanhou">Parabéns! Você ganhou!</string>
+    <string name="bt_prox_nivel">Nível</string>
+    <string name="bt_categoria">Categoria</string>
+    <string name="bt_sair">Sair</string>
+    
+    <string name="msgPerdeu">Você perdeu!</string>
+    <string name="bt_jogarNovamente">Jogar Novamente</string>
+    
+    
+ 
+
+</resources>

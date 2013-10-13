@@ -1,0 +1,56 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="#3CB371"
+    tools:context=".MainActivity" >
+
+    <Button
+        android:id="@+id/btnAjuda"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/tituloApp"
+        android:layout_alignRight="@+id/tituloApp"
+        android:layout_below="@+id/btnIniciar"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/shapebutton"
+        android:text="@string/bt_ajuda" />
+
+    <Button
+        android:id="@+id/btnSobre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/btnAjuda"
+        android:layout_alignRight="@+id/btnAjuda"
+        android:layout_below="@+id/btnAjuda"
+        android:layout_marginTop="31dp"
+        android:background="@drawable/shapebutton"
+        android:text="@string/bt_sobre" />
+
+    <Button
+        android:id="@+id/btnIniciar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/btnAjuda"
+        android:layout_alignRight="@+id/btnAjuda"
+        android:layout_below="@+id/tituloApp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/shapebutton"
+        android:text="@string/bt_iniciar" />
+
+    <TextView
+        android:id="@+id/tituloApp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="67dp"
+        android:background="@drawable/shapetextview"
+        android:text="@string/quiz_copa"
+        android:textSize="20sp" />
+
+</RelativeLayout>
