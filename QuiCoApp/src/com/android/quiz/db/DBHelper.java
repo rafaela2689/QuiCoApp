@@ -234,4 +234,32 @@ public class DBHelper extends SQLiteOpenHelper {
 			
 		}
 
+		public int consultaStatusNivel(int id_nivel){
+			int status;
+			Cursor mCursor = null;
+			dbQuery = this.getReadableDatabase();
+			String tabela = "nivel";
+			String where = "_id=?";
+			String[] coluna = new String[] {"_id", "status"};
+			String argumentos[] = new String[] {String.valueOf(id_nivel)} ;
+			
+			mCursor = dbQuery.query(tabela, coluna, where, argumentos, null, null, null);
+			
+			mCursor.moveToFirst();
+			
+			status = mCursor.getInt(mCursor.getColumnIndex("status"));
+			
+			return status;
+		}
+		
+		public boolean atualizaStatusNivel(int id_nivel, int status){
+			
+			dbQuery = this.getWritableDatabase();
+			ContentValues values = new ContentValues();
+			
+			values.put("status", status);
+			
+			return dbQuery.update("nivel", values, "_id = ?", new String[] {String.valueOf(id_nivel)}) > 0;
+			
+		}
 }

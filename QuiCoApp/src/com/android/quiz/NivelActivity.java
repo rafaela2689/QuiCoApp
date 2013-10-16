@@ -1,5 +1,7 @@
 package com.android.quiz;
 
+import com.android.quiz.modelo.ApplicationContextProvider;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -25,12 +27,19 @@ int id_categoria;
 		}
 		
 		
-		ImageButton  btnNivel1 = (ImageButton)findViewById(R.id.imgBtnNivel1);
-		ImageButton  btnNivel2 = (ImageButton)findViewById(R.id.imgBtnNivel2);
-		ImageButton  btnNivel3 = (ImageButton)findViewById(R.id.imgBtnNivel3);
-		ImageButton  btnNivel4 = (ImageButton)findViewById(R.id.imgBtnNivel4);
-		ImageButton  btnNivel5 = (ImageButton)findViewById(R.id.imgBtnNivel5);
-		ImageButton  btnNivel6 = (ImageButton)findViewById(R.id.imgBtnNivel6);
+		btnNivel1 = (ImageButton)findViewById(R.id.imgBtnNivel1);
+		btnNivel2 = (ImageButton)findViewById(R.id.imgBtnNivel2);
+		btnNivel3 = (ImageButton)findViewById(R.id.imgBtnNivel3);
+		btnNivel4 = (ImageButton)findViewById(R.id.imgBtnNivel4);
+		btnNivel5 = (ImageButton)findViewById(R.id.imgBtnNivel5);
+		btnNivel6 = (ImageButton)findViewById(R.id.imgBtnNivel6);
+		
+		verificaStatusNivel(1);
+		verificaStatusNivel(2);
+		verificaStatusNivel(3);
+		verificaStatusNivel(4);
+		verificaStatusNivel(5);
+		verificaStatusNivel(6);
 		
 		btnNivel1.setOnClickListener(this);
 		btnNivel2.setOnClickListener(this);
@@ -41,48 +50,6 @@ int id_categoria;
 		
 	}
 		
-		/*btnNivel1.setEnabled(true);
-		btnNivel2.setEnabled(false);
-		btnNivel3.setEnabled(false);
-		btnNivel4.setEnabled(false);
-		btnNivel5.setEnabled(false);
-		btnNivel6.setEnabled(false);*/
-		//clicar no nivel 1
-		/*btnNivel1.setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				//btnNivel1.setEnabled(true);
-				
-				//Get Question set //
-				//List<Questao> questions = getQuestionSetFromDb();
-
-				//Initialise Game with retrieved question set ///
-				//IniciarJogo c = new IniciarJogo();
-				//c.setQuestions(questions);
-				//c.setNumRounds(getNumQuestions());
-				//((ChuckApplication)getApplication()).setCurrentGame(c);  
-
-				//Start Game Now.. //
-				Intent i = new Intent(NivelActivity.this, QuestaoActivity.class);
-				startActivity(i);
-
-				
-			}
-		});
-	
-		
-		//clicar no nivel 2
-		btnNivel2.setOnClickListener(new OnClickListener() {
-					
-			@Override
-			public void onClick(View v) {
-				Intent i = new Intent(NivelActivity.this, QuestaoActivity.class);
-				startActivity(i);
-						
-			}
-		});
-	}
 
 	/*@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -124,13 +91,20 @@ int id_categoria;
 		switch(v.getId()){
 		case R.id.imgBtnNivel1:
 			
-			Intent nivel = new Intent(this, QuestaoActivity.class);
-			Bundle params = new Bundle();
-			params.putInt("categoria", id_categoria);
-			nivel.putExtras(params);
-			startActivity(nivel);
+			Intent nivel1 = new Intent(this, QuestaoActivity.class);
+			Bundle param1 = new Bundle();
+			param1.putInt("categoria", id_categoria);
+			param1.putInt("nivel", 1);
+			nivel1.putExtras(param1);
+			startActivity(nivel1);
 			break;
 		case R.id.imgBtnNivel2:
+			Intent nivel2 = new Intent(this, QuestaoActivity.class);
+			Bundle param2 = new Bundle();
+			param2.putInt("categoria", id_categoria);
+			param2.putInt("nivel", 2);
+			nivel2.putExtras(param2);
+			startActivity(nivel2);
 			break;
 		case R.id.imgBtnNivel3:
 			break;
@@ -142,6 +116,61 @@ int id_categoria;
 			break;
 		
 		}
+		
+	}
+	
+	public void verificaStatusNivel(int nivel){
+		int status;
+		
+		if (nivel == 1){
+			status = ApplicationContextProvider.getBD().consultaStatusNivel(1);
+			if(status == 1){
+				btnNivel1.setEnabled(true);
+			}else{
+				btnNivel1.setEnabled(false);
+			}
+		}
+		if (nivel == 2){
+			status = ApplicationContextProvider.getBD().consultaStatusNivel(2);
+			if(status == 1){
+				btnNivel2.setEnabled(true);
+			}else{
+				btnNivel2.setEnabled(false);
+			}
+		}
+		if (nivel == 3){
+			status = ApplicationContextProvider.getBD().consultaStatusNivel(3);
+			if(status == 1){
+				btnNivel3.setEnabled(true);
+			}else{
+				btnNivel3.setEnabled(false);
+			}
+		}
+		if (nivel == 4){
+			status = ApplicationContextProvider.getBD().consultaStatusNivel(4);
+			if(status == 1){
+				btnNivel4.setEnabled(true);
+			}else{
+				btnNivel4.setEnabled(false);
+			}
+		}
+		if (nivel == 5){
+			status = ApplicationContextProvider.getBD().consultaStatusNivel(5);
+			if(status == 1){
+				btnNivel5.setEnabled(true);
+			}else{
+				btnNivel5.setEnabled(false);
+			}
+		}
+		if (nivel == 6){
+			status = ApplicationContextProvider.getBD().consultaStatusNivel(6);
+			if(status == 1){
+				btnNivel6.setEnabled(true);
+			}else{
+				btnNivel6.setEnabled(false);
+			}
+		}
+		
 		
 	}
 }

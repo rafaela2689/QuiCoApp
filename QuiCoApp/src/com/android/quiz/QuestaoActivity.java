@@ -37,17 +37,18 @@ public class QuestaoActivity extends Activity implements OnClickListener {
 		if(params != null){
 			cat.setIdCategoria(params.getInt("categoria"));
 			id_cat = cat.getIdCategoria();
+			nivel_atual = params.getInt("nivel");
 		}
 		//DBHelper db = new DBHelper(this);
-		try {
+		/*try {
 			nivel_atual = ApplicationContextProvider.getBD().consultarCategoria(id_cat);
 		} catch (Exception e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
-		}
+		}*/
 		try {
-			//qLista = ApplicationContextProvider.getBD().getQuestionSet(id_cat, nivel_atual, 5);
-			qLista = ApplicationContextProvider.getBD().getQuestionSet(1, 2, 5);
+			  qLista = ApplicationContextProvider.getBD().getQuestionSet(id_cat, nivel_atual, 5);
+			//qLista = ApplicationContextProvider.getBD().getQuestionSet(1, 2, 5);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -135,10 +136,9 @@ public class QuestaoActivity extends Activity implements OnClickListener {
 			}
 			else{
 				nivel_atual = nivel_atual + 1;
-				ApplicationContextProvider.getBD().atualizaNivelCategoria(id_cat, nivel_atual);
+				ApplicationContextProvider.getBD().atualizaStatusNivel(nivel_atual, 1);
 				mostrarMsgGanhou();
-				//ImageButton level2 = (ImageButton)findViewById(R.id.imgBtnNivel2);
-				//level2.setEnabled(true);
+				
 			} 
 		}
 		else {
@@ -168,7 +168,7 @@ public class QuestaoActivity extends Activity implements OnClickListener {
 				// TODO Auto-generated method stub
 				Intent cat = new Intent(QuestaoActivity.this, CategoriaActivity.class);
 				 startActivity(cat);
-				 finish();
+				 //finish();
 				 dialog.dismiss();
 				
 			}
@@ -178,9 +178,14 @@ public class QuestaoActivity extends Activity implements OnClickListener {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				 Intent proxNivel = new Intent(QuestaoActivity.this, NivelActivity.class);
+				 Intent proxNivel = new Intent(QuestaoActivity.this, QuestaoActivity.class);
+				 Bundle params = new Bundle();
+				 params.putInt("categoria", id_cat);
+				 params.putInt("nivel", nivel_atual);
+				 proxNivel.putExtras(params);
 				 startActivity(proxNivel);
 				 finish();
+				
 				 dialog.dismiss();
 				
 			}
@@ -250,6 +255,19 @@ public class QuestaoActivity extends Activity implements OnClickListener {
 		});
 		
 		dialog.show();
+	}
+	
+	public void proximoNivel(){
+		try {
+			  qLista = ApplicationContextProvider.getBD().getQuestionSet(id_cat, nivel_atual, 5);
+			//qLista = ApplicationContextProvider.getBD().getQuestionSet(1, 2, 5);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		setQuestions();
+		
+			
 	}
 	
 
