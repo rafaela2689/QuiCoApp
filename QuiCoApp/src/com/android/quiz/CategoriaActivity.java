@@ -37,31 +37,26 @@ public class CategoriaActivity extends Activity implements OnClickListener{
 			switch(v.getId()){		
 			case R.id.imgbtnSelecao:
 				catAtual.setIdCategoria(1);
-				/*DBHelper db = new DBHelper(this);
-				try {
-					catAtual.setNivelAtual(db.consultarCategoria(catAtual.getIdCategoria()));
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				db.close();*/
-				//System.out.println(catAtual.getNivelAtual());
-				//catAtual.setNivelAtual();
 				Intent catSelecao = new Intent(this, NivelActivity.class);
 				Bundle params = new Bundle();
 				params.putInt("categoria", catAtual.getIdCategoria());
 				catSelecao.putExtras(params);
 				startActivity(catSelecao);
-				
 				break;
 			case R.id.imgbtnJogador:
 				catAtual.setIdCategoria(2);
-				Intent catJogadores = new Intent(CategoriaActivity.this, NivelActivity.class);
+				Intent catJogadores = new Intent(this, NivelActivity.class);
+				Bundle params2 = new Bundle();
+				params2.putInt("categoria", catAtual.getIdCategoria());
+				catJogadores.putExtras(params2);
 				startActivity(catJogadores);
 				break;
 			case R.id.imgbtnCidadeSede:
 				catAtual.setIdCategoria(3);
-				Intent catCidadeSede = new Intent(CategoriaActivity.this, NivelActivity.class);
+				Intent catCidadeSede = new Intent(this, NivelActivity.class);
+				Bundle params3 = new Bundle();
+				params3.putInt("categoria", catAtual.getIdCategoria());
+				catCidadeSede.putExtras(params3);
 				startActivity(catCidadeSede);
 				break;
 			}

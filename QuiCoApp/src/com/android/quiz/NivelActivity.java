@@ -34,12 +34,7 @@ int id_categoria;
 		btnNivel5 = (ImageButton)findViewById(R.id.imgBtnNivel5);
 		btnNivel6 = (ImageButton)findViewById(R.id.imgBtnNivel6);
 		
-		verificaStatusNivel(id_categoria, 1);
-		verificaStatusNivel(id_categoria, 2);
-		verificaStatusNivel(id_categoria, 3);
-		verificaStatusNivel(id_categoria, 4);
-		verificaStatusNivel(id_categoria, 5);
-		verificaStatusNivel(id_categoria, 6);
+		verificaStatusCategoriaNivel(id_categoria);
 		
 		btnNivel1.setOnClickListener(this);
 		btnNivel2.setOnClickListener(this);
@@ -58,33 +53,6 @@ int id_categoria;
 		return true;
 	}*/
 	
-	/**
-	 * Method that retrieves a random set of questions from
-	 * the database for the given difficulty
-	 * @return
-	 * @throws Error
-	 */
-	/*private List<Questao> getQuestionSetFromDb() throws Error {
-		//int diff = getDifficultySettings();
-		//int numQuestions = getNumQuestions();
-		DBHelper myDbHelper = new DBHelper(this);
-		try {
-			myDbHelper.createDataBase();
-		} catch (IOException ioe) {
-			throw new Error("Não foi possível criar a base de dados!");
-		}
-		try {
-			myDbHelper.openDataBase();
-		}catch(SQLException sqle){
-			throw sqle;
-		}
-		List<Questao> questions = myDbHelper.getQuestionSet(5);
-		myDbHelper.close();
-		return questions;
-	}*/
-
-
-
 	@Override
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
@@ -119,12 +87,39 @@ int id_categoria;
 		
 	}
 	
+	public void verificaStatusCategoriaNivel(int categoria){
+		if (categoria == 1){
+			verificaStatusNivel(categoria, 1);
+			verificaStatusNivel(categoria, 2);
+			verificaStatusNivel(categoria, 3);
+			verificaStatusNivel(categoria, 4);
+			verificaStatusNivel(categoria, 5);
+			verificaStatusNivel(categoria, 6);
+		}
+		if (categoria == 2){
+			verificaStatusNivel(categoria, 1);
+			verificaStatusNivel(categoria, 2);
+			verificaStatusNivel(categoria, 3);
+			verificaStatusNivel(categoria, 4);
+			verificaStatusNivel(categoria, 5);
+			verificaStatusNivel(categoria, 6);
+		}
+		if (categoria == 3){
+			verificaStatusNivel(categoria, 1);
+			verificaStatusNivel(categoria, 2);
+			verificaStatusNivel(categoria, 3);
+			verificaStatusNivel(categoria, 4);
+			verificaStatusNivel(categoria, 5);
+			verificaStatusNivel(categoria, 6);
+		}
+		
+	}
+	
 	public void verificaStatusNivel(int categoria, int nivel){
 		int status;
-		if (categoria == 1){
 		
 			if (nivel == 1){
-				status = ApplicationContextProvider.getBD().consultaStatusNivel(id_categoria, nivel);
+				status = ApplicationContextProvider.getBD().consultaStatusNivel(categoria, nivel);
 				if(status == 1){
 					btnNivel1.setEnabled(true);
 				}else{
@@ -132,7 +127,7 @@ int id_categoria;
 				}
 			}
 			if (nivel == 2){
-				status = ApplicationContextProvider.getBD().consultaStatusNivel(id_categoria, nivel);
+				status = ApplicationContextProvider.getBD().consultaStatusNivel(categoria, nivel);
 				if(status == 1){
 					btnNivel2.setEnabled(true);
 				}else{
@@ -140,7 +135,7 @@ int id_categoria;
 				}
 			}
 			if (nivel == 3){
-				status = ApplicationContextProvider.getBD().consultaStatusNivel(id_categoria, nivel);
+				status = ApplicationContextProvider.getBD().consultaStatusNivel(categoria, nivel);
 				if(status == 1){
 					btnNivel3.setEnabled(true);
 				}else{
@@ -148,7 +143,7 @@ int id_categoria;
 				}
 			}
 			if (nivel == 4){
-				status = ApplicationContextProvider.getBD().consultaStatusNivel(id_categoria, nivel);
+				status = ApplicationContextProvider.getBD().consultaStatusNivel(categoria, nivel);
 				if(status == 1){
 					btnNivel4.setEnabled(true);
 				}else{
@@ -156,7 +151,7 @@ int id_categoria;
 				}
 			}
 			if (nivel == 5){
-				status = ApplicationContextProvider.getBD().consultaStatusNivel(id_categoria, nivel);
+				status = ApplicationContextProvider.getBD().consultaStatusNivel(categoria, nivel);
 				if(status == 1){
 					btnNivel5.setEnabled(true);
 				}else{
@@ -164,14 +159,12 @@ int id_categoria;
 				}
 			}
 			if (nivel == 6){
-				status = ApplicationContextProvider.getBD().consultaStatusNivel(id_categoria, nivel);
+				status = ApplicationContextProvider.getBD().consultaStatusNivel(categoria, nivel);
 				if(status == 1){
 					btnNivel6.setEnabled(true);
 				}else{
 					btnNivel6.setEnabled(false);
 				}
 			}
-		
-		}
 	}
 }

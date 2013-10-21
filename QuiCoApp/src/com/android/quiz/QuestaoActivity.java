@@ -15,7 +15,7 @@ import android.widget.TextView;
 import com.android.quiz.modelo.ApplicationContextProvider;
 import com.android.quiz.modelo.Categoria;
 import com.android.quiz.modelo.Questao;
-//import com.android.quiz.modelo.Utility;
+
 
 public class QuestaoActivity extends Activity implements OnClickListener {
 
@@ -39,22 +39,14 @@ public class QuestaoActivity extends Activity implements OnClickListener {
 			id_cat = cat.getIdCategoria();
 			nivel_atual = params.getInt("nivel");
 		}
-		//DBHelper db = new DBHelper(this);
-		/*try {
-			nivel_atual = ApplicationContextProvider.getBD().consultarCategoria(id_cat);
-		} catch (Exception e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}*/
+		
 		try {
-			  qLista = ApplicationContextProvider.getBD().getQuestionSet(id_cat, nivel_atual, 5);
-			//qLista = ApplicationContextProvider.getBD().getQuestionSet(1, 2, 5);
+			qLista = ApplicationContextProvider.getBD().getQuestionSet(id_cat, nivel_atual, 5);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		qAtual = qLista.get(qid);
-		//TextView txQuestao = (TextView) findViewById(R.id.txtQuestao);
 		Button btnOpcao1 = (Button) findViewById(R.id.btnOpcao1);
 		Button btnOpcao2 = (Button) findViewById(R.id.btnOpcao2);
 		Button btnOpcao3 = (Button) findViewById(R.id.btnOpcao3);
@@ -70,12 +62,10 @@ public class QuestaoActivity extends Activity implements OnClickListener {
 	
 	private void setQuestions() {
 		//set the question text from current question
-		//String question = Utility.capitalise(qAtual.getQuestao()) + "?";
 		TextView txQuestao = (TextView) findViewById(R.id.txtQuestao);
         txQuestao.setText(qAtual.getQuestao());
         
         //set the available options
-        //List<String> answers = qAtual.getQuestaoOpcoes();
         TextView btnOpcao1 = (TextView) findViewById(R.id.btnOpcao1);
         btnOpcao1.setText(qAtual.getOpcao1());
         
@@ -256,19 +246,5 @@ public class QuestaoActivity extends Activity implements OnClickListener {
 		
 		dialog.show();
 	}
-	
-	public void proximoNivel(){
-		try {
-			  qLista = ApplicationContextProvider.getBD().getQuestionSet(id_cat, nivel_atual, 5);
-			//qLista = ApplicationContextProvider.getBD().getQuestionSet(1, 2, 5);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		setQuestions();
-		
-			
-	}
-	
 
 }

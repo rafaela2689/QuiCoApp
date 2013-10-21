@@ -31,7 +31,6 @@ public class DBHelper extends SQLiteOpenHelper {
 	private final Context dbContexto;
 
 	public DBHelper(Context context){
-		//super(ApplicationContextProvider.getContext(), DB_NAME, null, DATABASE_VERSAO);
 		super(context, DB_NAME, null, DATABASE_VERSAO);
 		this.dbContexto = context;
 		
@@ -151,29 +150,20 @@ public class DBHelper extends SQLiteOpenHelper {
 		// TODO Auto-generated method stub
 		
 	}	
+		
+	// Métodos para acessar a base de dados
 	
-	// Add your public helper methods to access and get content from the database.
-		// You could return cursors by doing "return myDataBase.query(....)" so it'd be easy
-		// to you to create adapters for your views.
-
-		
-		
-		
+	//Recuperar as questões do banco de dados
 	public List<Questao> getQuestionSet(int idCat, int idNiv, int numQ) throws Exception{//int id_categoria, int id_nivel, int numQ){
 			List<Questao> questionSet = new ArrayList<Questao>();
 			String selectQuery = "SELECT * FROM questao WHERE categoria_id = "+idCat+
 					" AND nivel_id = "+idNiv+ " ORDER BY RANDOM() LIMIT " + numQ;
 			dbQuery = this.getReadableDatabase();
-			//Cursor c = dbQuery.rawQuery("SELECT * FROM questao ORDER BY RANDOM() LIMIT ", null);//"//WHERE categoria_id=" + id_categoria + 
-					//" AND nivel_id=" + id_nivel + 
-					 //+ numQ, null);
 			Cursor c = dbQuery.rawQuery(selectQuery, null);
 			while (c.moveToNext()){
-				//Log.d("QUESTION", "Question Found in DB: " + c.getString(1));
 				Questao q = new Questao();
 				q.setId(c.getInt(0));
 				q.setQuestao(c.getString(1));
-				//q.setResposta(c.getString(2));
 				q.setOpcao1(c.getString(2));
 				q.setOpcao2(c.getString(3));
 				q.setOpcao3(c.getString(4));
@@ -186,6 +176,7 @@ public class DBHelper extends SQLiteOpenHelper {
 			return questionSet;
 		}
 	
+	//Consultar tabela categoria 
 	public int consultarCategoria(int idCategoria) throws Exception{
 		
 		Categoria cat = null;
@@ -198,24 +189,17 @@ public class DBHelper extends SQLiteOpenHelper {
 		
 		mCursor = dbQuery.query(tabela, coluna, where, argumentos, null, null, null);
 		
-		//if(mCursor != null ){
 		cat = new Categoria();
 		mCursor.moveToFirst();
-		//cat.setIdCategoria(mCursor.getInt(mCursor.getColumnIndex("_id")));
 		cat.setNivelAtual(mCursor.getInt(mCursor.getColumnIndex("nivel_atual")));
-			//cat.setNivelAtual(mCursor.getInt(0));
-			 
-		//}
-		
-		//if(mCursor!=null){
-		//	mCursor.close();
-		//}
-		return cat.getNivelAtual(); //cat.setNivelAtual(mCursor.getInt(mCursor.getColumnIndex("nivel_atual")));
+
+		return cat.getNivelAtual();
 		
 		
 	}
-		
-		public boolean atualizaNivelCategoria(int id_categoria, int nivel){
+	
+	//Atualiza o nível da categoria
+	public boolean atualizaNivelCategoria(int id_categoria, int nivel){
 			
 			dbQuery = this.getWritableDatabase();
 			ContentValues values = new ContentValues();
@@ -226,7 +210,8 @@ public class DBHelper extends SQLiteOpenHelper {
 			
 		}
 
-		public int consultaStatusNivel(int id_categoria, int id_nivel){
+	//Consulta o status do nível e da categoria.
+	public int consultaStatusNivel(int id_categoria, int id_nivel){
 			int status;
 			Cursor mCursor = null;
 			dbQuery = this.getReadableDatabase();
@@ -244,7 +229,9 @@ public class DBHelper extends SQLiteOpenHelper {
 			return status;
 		}
 		
-		public boolean atualizaStatusNivel(int id_categoria, int id_nivel, int status){
+	/*Atualiza o status do nível (bloqueado ou desbloqueado), recebendo como parâmetros:
+	id da tabela categoria, id do nível e o status que será atualizado.	*/
+	public boolean atualizaStatusNivel(int id_categoria, int id_nivel, int status){
 			
 			dbQuery = this.getWritableDatabase();
 			ContentValues values = new ContentValues();
