@@ -136,7 +136,7 @@ public class QuestaoActivity extends Activity implements OnClickListener {
 			}
 			else{
 				nivel_atual = nivel_atual + 1;
-				ApplicationContextProvider.getBD().atualizaStatusNivel(nivel_atual, 1);
+				ApplicationContextProvider.getBD().atualizaStatusNivel(id_cat, nivel_atual, 1);
 				mostrarMsgGanhou();
 				
 			} 

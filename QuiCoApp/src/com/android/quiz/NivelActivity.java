@@ -34,12 +34,12 @@ int id_categoria;
 		btnNivel5 = (ImageButton)findViewById(R.id.imgBtnNivel5);
 		btnNivel6 = (ImageButton)findViewById(R.id.imgBtnNivel6);
 		
-		verificaStatusNivel(1);
-		verificaStatusNivel(2);
-		verificaStatusNivel(3);
-		verificaStatusNivel(4);
-		verificaStatusNivel(5);
-		verificaStatusNivel(6);
+		verificaStatusNivel(id_categoria, 1);
+		verificaStatusNivel(id_categoria, 2);
+		verificaStatusNivel(id_categoria, 3);
+		verificaStatusNivel(id_categoria, 4);
+		verificaStatusNivel(id_categoria, 5);
+		verificaStatusNivel(id_categoria, 6);
 		
 		btnNivel1.setOnClickListener(this);
 		btnNivel2.setOnClickListener(this);
@@ -119,58 +119,59 @@ int id_categoria;
 		
 	}
 	
-	public void verificaStatusNivel(int nivel){
+	public void verificaStatusNivel(int categoria, int nivel){
 		int status;
+		if (categoria == 1){
 		
-		if (nivel == 1){
-			status = ApplicationContextProvider.getBD().consultaStatusNivel(1);
-			if(status == 1){
-				btnNivel1.setEnabled(true);
-			}else{
-				btnNivel1.setEnabled(false);
+			if (nivel == 1){
+				status = ApplicationContextProvider.getBD().consultaStatusNivel(id_categoria, nivel);
+				if(status == 1){
+					btnNivel1.setEnabled(true);
+				}else{
+					btnNivel1.setEnabled(false);
+				}
 			}
-		}
-		if (nivel == 2){
-			status = ApplicationContextProvider.getBD().consultaStatusNivel(2);
-			if(status == 1){
-				btnNivel2.setEnabled(true);
-			}else{
-				btnNivel2.setEnabled(false);
+			if (nivel == 2){
+				status = ApplicationContextProvider.getBD().consultaStatusNivel(id_categoria, nivel);
+				if(status == 1){
+					btnNivel2.setEnabled(true);
+				}else{
+					btnNivel2.setEnabled(false);
+				}
 			}
-		}
-		if (nivel == 3){
-			status = ApplicationContextProvider.getBD().consultaStatusNivel(3);
-			if(status == 1){
-				btnNivel3.setEnabled(true);
-			}else{
-				btnNivel3.setEnabled(false);
+			if (nivel == 3){
+				status = ApplicationContextProvider.getBD().consultaStatusNivel(id_categoria, nivel);
+				if(status == 1){
+					btnNivel3.setEnabled(true);
+				}else{
+					btnNivel3.setEnabled(false);
+				}
 			}
-		}
-		if (nivel == 4){
-			status = ApplicationContextProvider.getBD().consultaStatusNivel(4);
-			if(status == 1){
-				btnNivel4.setEnabled(true);
-			}else{
-				btnNivel4.setEnabled(false);
+			if (nivel == 4){
+				status = ApplicationContextProvider.getBD().consultaStatusNivel(id_categoria, nivel);
+				if(status == 1){
+					btnNivel4.setEnabled(true);
+				}else{
+					btnNivel4.setEnabled(false);
+				}
 			}
-		}
-		if (nivel == 5){
-			status = ApplicationContextProvider.getBD().consultaStatusNivel(5);
-			if(status == 1){
-				btnNivel5.setEnabled(true);
-			}else{
-				btnNivel5.setEnabled(false);
+			if (nivel == 5){
+				status = ApplicationContextProvider.getBD().consultaStatusNivel(id_categoria, nivel);
+				if(status == 1){
+					btnNivel5.setEnabled(true);
+				}else{
+					btnNivel5.setEnabled(false);
+				}
 			}
-		}
-		if (nivel == 6){
-			status = ApplicationContextProvider.getBD().consultaStatusNivel(6);
-			if(status == 1){
-				btnNivel6.setEnabled(true);
-			}else{
-				btnNivel6.setEnabled(false);
+			if (nivel == 6){
+				status = ApplicationContextProvider.getBD().consultaStatusNivel(id_categoria, nivel);
+				if(status == 1){
+					btnNivel6.setEnabled(true);
+				}else{
+					btnNivel6.setEnabled(false);
+				}
 			}
-		}
 		
-		
+		}
 	}
 }

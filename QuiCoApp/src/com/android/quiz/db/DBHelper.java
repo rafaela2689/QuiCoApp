@@ -19,6 +19,8 @@ import com.android.quiz.modelo.Categoria;
 import com.android.quiz.modelo.Questao;
 
 public class DBHelper extends SQLiteOpenHelper {
+	
+	private static DBHelper sInstance;//variavel para única instancia da base de dados
 
 	//The Android's default system path of your application database.
 	private static String DB_PATH = "/data/data/com.android.quiz/databases/";
@@ -46,22 +48,11 @@ public class DBHelper extends SQLiteOpenHelper {
      *
      * @return singleton instance
      */
-	/*public static DBHelper instance(){
+	public static DBHelper instance(Context context){
 		if (sInstance == null){
-			sInstance = new DBHelper();
+			sInstance = new DBHelper(context.getApplicationContext());
 		}
 		return sInstance;
-	}
-   /* public static DBHelper instance() {
- 
-        if (sInstance == null) {
-            sInstance = new DBHelper();
-        }
-        return sInstance;
-    }
-	/*public DBHelper(Context context) {
-		super(context, DB_NAME, null, 1);
-		this.dbContexto = context;
 	}
 
 	/**
@@ -151,6 +142,7 @@ public class DBHelper extends SQLiteOpenHelper {
 	@Override
 	public void onCreate(SQLiteDatabase db) {
 		// TODO Auto-generated method stub
+		openDataBase();
 		
 	}
 
@@ -234,32 +226,37 @@ public class DBHelper extends SQLiteOpenHelper {
 			
 		}
 
-		public int consultaStatusNivel(int id_nivel){
+		public int consultaStatusNivel(int id_categoria, int id_nivel){
 			int status;
 			Cursor mCursor = null;
 			dbQuery = this.getReadableDatabase();
-			String tabela = "nivel";
-			String where = "_id=?";
-			String[] coluna = new String[] {"_id", "status"};
-			String argumentos[] = new String[] {String.valueOf(id_nivel)} ;
+			String tabela = "status_nivel";
+			String where = "id_categoria=? AND id_nivel=?";
+			String[] coluna = new String[] {"status_nivel"};
+			String argumentos[] = new String[] {String.valueOf(id_categoria), String.valueOf(id_nivel)} ;
 			
 			mCursor = dbQuery.query(tabela, coluna, where, argumentos, null, null, null);
 			
 			mCursor.moveToFirst();
 			
-			status = mCursor.getInt(mCursor.getColumnIndex("status"));
+			status = mCursor.getInt(mCursor.getColumnIndex("status_nivel"));
 			
 			return status;
 		}
 		
-		public boolean atualizaStatusNivel(int id_nivel, int status){
+		public boolean atualizaStatusNivel(int id_categoria, int id_nivel, int status){
 			
 			dbQuery = this.getWritableDatabase();
 			ContentValues values = new ContentValues();
 			
-			values.put("status", status);
+			values.put("status_nivel", status);
 			
-			return dbQuery.update("nivel", values, "_id = ?", new String[] {String.valueOf(id_nivel)}) > 0;
+			String tabela = "status_nivel";
+			String where = "id_categoria=? AND id_nivel=?";
+			//String[] coluna = new String[] {"status_nivel"};
+			String argumentos[] = new String[] {String.valueOf(id_categoria), String.valueOf(id_nivel)} ;
+			
+			return dbQuery.update(tabela, values, where, argumentos) > 0;
 			
 		}
 }
