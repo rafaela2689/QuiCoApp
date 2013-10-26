@@ -16,6 +16,24 @@ public class Questao {
 	private int id_cat;
 	private int id_niv;
 	
+	public Questao(){
+		
+	}
+	
+	public Questao(int id, String questao, String opcao1, String opcao2,
+			String opcao3, String opcao4, String resposta, int id_cat,
+			int id_niv) {
+		super();
+		this.id = id;
+		this.questao = questao;
+		this.opcao1 = opcao1;
+		this.opcao2 = opcao2;
+		this.opcao3 = opcao3;
+		this.opcao4 = opcao4;
+		this.resposta = resposta;
+		this.id_cat = id_cat;
+		this.id_niv = id_niv;
+	}
 	
 	public int getId() {
 		return id;

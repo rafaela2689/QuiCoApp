@@ -12,6 +12,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.android.quiz.dao.QuestaoDao;
 import com.android.quiz.modelo.ApplicationContextProvider;
 import com.android.quiz.modelo.Categoria;
 import com.android.quiz.modelo.Questao;
@@ -24,6 +25,7 @@ public class QuestaoActivity extends Activity implements OnClickListener {
 	int id_cat;
 	int nivel_atual;
 	Questao qAtual;
+	QuestaoDao dao;
 	int qid = 0;
 	TextView txQuestao;
 	Button btnOpcao1, btnOpcao2, btnOpcao3, btnOpcao4;
@@ -40,13 +42,14 @@ public class QuestaoActivity extends Activity implements OnClickListener {
 			nivel_atual = params.getInt("nivel");
 		}
 		
-		try {
+		dao = new QuestaoDao(getApplicationContext());
+		/*try {
 			qLista = ApplicationContextProvider.getBD().getQuestionSet(id_cat, nivel_atual, 5);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-		qAtual = qLista.get(qid);
+		}*/
+		//qAtual = qLista.get(qid);
 		Button btnOpcao1 = (Button) findViewById(R.id.btnOpcao1);
 		Button btnOpcao2 = (Button) findViewById(R.id.btnOpcao2);
 		Button btnOpcao3 = (Button) findViewById(R.id.btnOpcao3);
@@ -56,12 +59,22 @@ public class QuestaoActivity extends Activity implements OnClickListener {
 		btnOpcao3.setOnClickListener(this);
 		btnOpcao4.setOnClickListener(this);
 		setQuestions();
-		ApplicationContextProvider.getBD().close();
+		//ApplicationContextProvider.getBD().close();
 		
 	}
 	
 	private void setQuestions() {
 		//set the question text from current question
+		
+		try {
+			qLista = dao.getQuestionSet(id_cat, nivel_atual, 5);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		qAtual = qLista.get(qid);
+		
 		TextView txQuestao = (TextView) findViewById(R.id.txtQuestao);
         txQuestao.setText(qAtual.getQuestao());
         
@@ -125,8 +138,12 @@ public class QuestaoActivity extends Activity implements OnClickListener {
 				setQuestions();
 			}
 			else{
+				
 				nivel_atual = nivel_atual + 1;
-				ApplicationContextProvider.getBD().atualizaStatusNivel(id_cat, nivel_atual, 1);
+				//verifica se o nivel ainda é valido para atualizar no banco, o status
+				if(nivel_atual<=6){
+					ApplicationContextProvider.getBD().atualizaStatusNivel(id_cat, nivel_atual, 1);
+				}
 				mostrarMsgGanhou();
 				
 			} 
@@ -168,13 +185,22 @@ public class QuestaoActivity extends Activity implements OnClickListener {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				 Intent proxNivel = new Intent(QuestaoActivity.this, QuestaoActivity.class);
-				 Bundle params = new Bundle();
-				 params.putInt("categoria", id_cat);
-				 params.putInt("nivel", nivel_atual);
-				 proxNivel.putExtras(params);
-				 startActivity(proxNivel);
-				 finish();
+				if(nivel_atual<6){
+					/*Intent proxNivel = new Intent(QuestaoActivity.this, QuestaoActivity.class);
+					Bundle params = new Bundle();
+					params.putInt("categoria", id_cat);
+					params.putInt("nivel", nivel_atual);
+					proxNivel.putExtras(params);
+					startActivity(proxNivel);*/
+					qid=0;
+					setQuestions();
+					finish();
+				}else{
+					Intent proxCategoria = new Intent(QuestaoActivity.this, CategoriaActivity.class);
+					startActivity(proxCategoria);
+					finish();
+				}
+				 
 				
 				 dialog.dismiss();
 				
@@ -238,13 +264,25 @@ public class QuestaoActivity extends Activity implements OnClickListener {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				setQuestions();
+				Intent novoJogo = new Intent(QuestaoActivity.this, QuestaoActivity.class);
+				Bundle params = new Bundle();
+				params.putInt("categoria", id_cat);
+				params.putInt("nivel", nivel_atual);
+				novoJogo.putExtras(params);
+				startActivity(novoJogo);
+				finish();
 				dialog.dismiss();
 				
 			}
 		});
 		
 		dialog.show();
+	}
+	
+	@Override
+	protected void onDestroy(){
+		dao.close();
+		super.onDestroy();
 	}
 
 }

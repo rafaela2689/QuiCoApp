@@ -11,10 +11,8 @@ import android.widget.ImageButton;
 import com.android.quiz.db.DBHelper;
 import com.android.quiz.modelo.Categoria;
 
-public class CategoriaActivity extends Activity implements OnClickListener{
-	
-	
-	
+public class CategoriaActivity extends Activity implements OnClickListener {
+
 	Categoria catAtual = new Categoria();
 
 	ImageButton btnSelecao, btnJogadores, btnCidadeSede;
@@ -23,45 +21,45 @@ public class CategoriaActivity extends Activity implements OnClickListener{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.categoria);
-		
-		btnSelecao = (ImageButton)findViewById(R.id.imgbtnSelecao);
-		btnJogadores = (ImageButton)findViewById(R.id.imgbtnJogador);
-		btnCidadeSede = (ImageButton)findViewById(R.id.imgbtnCidadeSede);
-		
+
+		btnSelecao = (ImageButton) findViewById(R.id.imgbtnSelecao);
+		btnJogadores = (ImageButton) findViewById(R.id.imgbtnJogador);
+		btnCidadeSede = (ImageButton) findViewById(R.id.imgbtnCidadeSede);
+
 		btnSelecao.setOnClickListener(this);
 		btnJogadores.setOnClickListener(this);
 		btnCidadeSede.setOnClickListener(this);
 	}
-	
-		public void onClick(View v){
-			switch(v.getId()){		
-			case R.id.imgbtnSelecao:
-				catAtual.setIdCategoria(1);
-				Intent catSelecao = new Intent(this, NivelActivity.class);
-				Bundle params = new Bundle();
-				params.putInt("categoria", catAtual.getIdCategoria());
-				catSelecao.putExtras(params);
-				startActivity(catSelecao);
-				break;
-			case R.id.imgbtnJogador:
-				catAtual.setIdCategoria(2);
-				Intent catJogadores = new Intent(this, NivelActivity.class);
-				Bundle params2 = new Bundle();
-				params2.putInt("categoria", catAtual.getIdCategoria());
-				catJogadores.putExtras(params2);
-				startActivity(catJogadores);
-				break;
-			case R.id.imgbtnCidadeSede:
-				catAtual.setIdCategoria(3);
-				Intent catCidadeSede = new Intent(this, NivelActivity.class);
-				Bundle params3 = new Bundle();
-				params3.putInt("categoria", catAtual.getIdCategoria());
-				catCidadeSede.putExtras(params3);
-				startActivity(catCidadeSede);
-				break;
-			}
-			
+
+	public void onClick(View v) {
+		switch (v.getId()) {
+		case R.id.imgbtnSelecao:
+			catAtual.setIdCategoria(1);
+			Intent catSelecao = new Intent(this, NivelActivity.class);
+			Bundle params = new Bundle();
+			params.putInt("categoria", catAtual.getIdCategoria());
+			catSelecao.putExtras(params);
+			startActivity(catSelecao);
+			break;
+		case R.id.imgbtnJogador:
+			catAtual.setIdCategoria(2);
+			Intent catJogadores = new Intent(this, NivelActivity.class);
+			Bundle params2 = new Bundle();
+			params2.putInt("categoria", catAtual.getIdCategoria());
+			catJogadores.putExtras(params2);
+			startActivity(catJogadores);
+			break;
+		case R.id.imgbtnCidadeSede:
+			catAtual.setIdCategoria(3);
+			Intent catCidadeSede = new Intent(this, NivelActivity.class);
+			Bundle params3 = new Bundle();
+			params3.putInt("categoria", catAtual.getIdCategoria());
+			catCidadeSede.putExtras(params3);
+			startActivity(catCidadeSede);
+			break;
 		}
+
+	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
