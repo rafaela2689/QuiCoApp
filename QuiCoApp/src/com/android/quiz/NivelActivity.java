@@ -1,7 +1,5 @@
 package com.android.quiz;
 
-import com.android.quiz.modelo.ApplicationContextProvider;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,12 +7,18 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageButton;
 
+import com.android.quiz.dao.CategoriaNivelDao;
+import com.android.quiz.modelo.ApplicationContextProvider;
+import com.android.quiz.modelo.Categoria;
+
 public class NivelActivity extends Activity implements OnClickListener {
 
 	ImageButton btnNivel1, btnNivel2, btnNivel3, btnNivel4, btnNivel5,
 			btnNivel6;
+	Categoria cat;
 	int id_categoria;
-
+	int id_cat_niv;
+	CategoriaNivelDao dao;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -53,20 +57,23 @@ public class NivelActivity extends Activity implements OnClickListener {
 	@Override
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
+		cat = new Categoria();
 		switch (v.getId()) {
 		case R.id.imgBtnNivel1:
-
+			id_cat_niv = dao.consultaIdCategoriaNIvel(id_categoria, 1);
 			Intent nivel1 = new Intent(this, QuestaoActivity.class);
 			Bundle param1 = new Bundle();
-			param1.putInt("categoria", id_categoria);
+			param1.putInt("categoria_nivel", id_cat_niv);
 			param1.putInt("nivel", 1);
 			nivel1.putExtras(param1);
 			startActivity(nivel1);
 			break;
 		case R.id.imgBtnNivel2:
+			//cat.setIdCategoria(2);
+			id_cat_niv = dao.consultaIdCategoriaNIvel(id_categoria, 2);
 			Intent nivel2 = new Intent(this, QuestaoActivity.class);
 			Bundle param2 = new Bundle();
-			param2.putInt("categoria", id_categoria);
+			param2.putInt("categoria_nivel", id_cat_niv);
 			param2.putInt("nivel", 2);
 			nivel2.putExtras(param2);
 			startActivity(nivel2);
@@ -113,10 +120,12 @@ public class NivelActivity extends Activity implements OnClickListener {
 	}
 
 	public void verificaStatusNivel(int categoria, int nivel) {
+		
+		dao = new CategoriaNivelDao(getApplicationContext());
 		int status;
 
 		if (nivel == 1) {
-			status = ApplicationContextProvider.getBD().consultaStatusNivel(
+			status = dao.consultaStatusNivel(
 					categoria, nivel);
 			if (status == 1) {
 				btnNivel1.setEnabled(true);
@@ -125,7 +134,7 @@ public class NivelActivity extends Activity implements OnClickListener {
 			}
 		}
 		if (nivel == 2) {
-			status = ApplicationContextProvider.getBD().consultaStatusNivel(
+			status = dao.consultaStatusNivel(
 					categoria, nivel);
 			if (status == 1) {
 				btnNivel2.setEnabled(true);
@@ -134,7 +143,7 @@ public class NivelActivity extends Activity implements OnClickListener {
 			}
 		}
 		if (nivel == 3) {
-			status = ApplicationContextProvider.getBD().consultaStatusNivel(
+			status = dao.consultaStatusNivel(
 					categoria, nivel);
 			if (status == 1) {
 				btnNivel3.setEnabled(true);
@@ -143,7 +152,7 @@ public class NivelActivity extends Activity implements OnClickListener {
 			}
 		}
 		if (nivel == 4) {
-			status = ApplicationContextProvider.getBD().consultaStatusNivel(
+			status = dao.consultaStatusNivel(
 					categoria, nivel);
 			if (status == 1) {
 				btnNivel4.setEnabled(true);
@@ -152,7 +161,7 @@ public class NivelActivity extends Activity implements OnClickListener {
 			}
 		}
 		if (nivel == 5) {
-			status = ApplicationContextProvider.getBD().consultaStatusNivel(
+			status = dao.consultaStatusNivel(
 					categoria, nivel);
 			if (status == 1) {
 				btnNivel5.setEnabled(true);
@@ -161,7 +170,7 @@ public class NivelActivity extends Activity implements OnClickListener {
 			}
 		}
 		if (nivel == 6) {
-			status = ApplicationContextProvider.getBD().consultaStatusNivel(
+			status = dao.consultaStatusNivel(
 					categoria, nivel);
 			if (status == 1) {
 				btnNivel6.setEnabled(true);
@@ -170,4 +179,8 @@ public class NivelActivity extends Activity implements OnClickListener {
 			}
 		}
 	}
+	
+	/*public void consultaIdCatNiv(int idCat, int idNiv){
+		dao.consultaIdCategoriaNIvel(idCat, idNiv);
+	}*/
 }

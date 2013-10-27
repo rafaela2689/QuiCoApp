@@ -161,7 +161,7 @@ public class DBHelper extends SQLiteOpenHelper {
 	// Métodos para acessar a base de dados
 
 	// Consultar tabela categoria
-	public int consultarCategoria(int idCategoria) throws Exception {
+	/*public int consultarCategoria(int idCategoria) throws Exception {
 
 		Categoria cat = null;
 		Cursor mCursor = null;
@@ -180,7 +180,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
 		return cat.getNivelAtual();
 
-	}
+	}*/
 
 	// Atualiza o nível da categoria
 	/*public boolean atualizaNivelCategoria(int id_categoria, int nivel) {
@@ -195,50 +195,6 @@ public class DBHelper extends SQLiteOpenHelper {
 
 	}*/
 
-	// Consulta o status do nível e da categoria.
-	public int consultaStatusNivel(int id_categoria, int id_nivel) {
-		int status;
-		Cursor mCursor = null;
-		dbQuery = this.getReadableDatabase();
-		String tabela = "status_nivel";
-		String where = "id_categoria=? AND id_nivel=?";
-		String[] coluna = new String[] { "status_nivel" };
-		String argumentos[] = new String[] { String.valueOf(id_categoria),
-				String.valueOf(id_nivel) };
-
-		mCursor = dbQuery.query(tabela, coluna, where, argumentos, null, null,
-				null);
-
-		mCursor.moveToFirst();
-
-		status = mCursor.getInt(mCursor.getColumnIndex("status_nivel"));
-
-		return status;
-	}
-
-	/*
-	 * Atualiza o status do nível (bloqueado ou desbloqueado), recebendo como
-	 * parâmetros: id da tabela categoria, id do nível e o status que será
-	 * atualizado.
-	 */
-	public boolean atualizaStatusNivel(int id_categoria, int id_nivel,
-			int status) {
-
-		dbQuery = this.getWritableDatabase();
-		ContentValues values = new ContentValues();
-
-		values.put("status_nivel", status);
-
-		String tabela = "status_nivel";
-		String where = "id_categoria=? AND id_nivel=?";
-		// String[] coluna = new String[] {"status_nivel"};
-		String argumentos[] = new String[] { String.valueOf(id_categoria),
-				String.valueOf(id_nivel) };
-
-		return dbQuery.update(tabela, values, where, argumentos) > 0;
-
-	}
-	
 	public static class Questao{
 		public static final String TAB_QUESTAO = "questao";
 		public static final String COL_ID = "_id";
@@ -248,12 +204,12 @@ public class DBHelper extends SQLiteOpenHelper {
 		public static final String COL_OPCAO_3 = "opcao3";
 		public static final String COL_OPCAO_4 = "opcao4";
 		public static final String COL_RESPOSTA = "resposta";
-		public static final String COL_ID_CATEGORIA = "categoria_id";
-		public static final String COL_ID_NIVEL = "nivel_id";
+		public static final String COL_ID_CATEGORIA_NIVEL = "id_cat_nivel";
+		
 		
 		public static final String[] COLUNAS_QUESTAO = new String[]{COL_ID, COL_OPCAO_1, COL_OPCAO_2,
 														COL_OPCAO_3, COL_OPCAO_4, COL_RESPOSTA,
-														COL_ID_CATEGORIA, COL_ID_NIVEL};
+														COL_ID_CATEGORIA_NIVEL};
 		
 	}
 }
