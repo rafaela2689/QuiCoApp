@@ -155,7 +155,7 @@ public class QuestaoActivity extends Activity implements OnClickListener {
 				}catch(Exception e){
 					String err = (e.getMessage()==null)?"Atualização falhou":e.getMessage();
 					 
-					Log.e("Erro", err);
+					 Log.e("Erro", err);
 				}
 				mostrarMsgGanhou();
 				
@@ -198,16 +198,18 @@ public class QuestaoActivity extends Activity implements OnClickListener {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				if(nivel_atual<6){
-					/*Intent proxNivel = new Intent(QuestaoActivity.this, QuestaoActivity.class);
-					Bundle params = new Bundle();
-					params.putInt("categoria", id_cat);
-					params.putInt("nivel", nivel_atual);
-					proxNivel.putExtras(params);
-					startActivity(proxNivel);*/
-					qid=1;
+				if(nivel_atual<=6){
+					qid=0;
+					try {
+						qLista = qt_dao.getQuestionSet(id_cat_niv, 5);
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					
+					qAtual = qLista.get(qid);
 					setQuestions();
-					finish();
+					//finish();
 				}else{
 					Intent proxCategoria = new Intent(QuestaoActivity.this, CategoriaActivity.class);
 					startActivity(proxCategoria);
@@ -277,13 +279,16 @@ public class QuestaoActivity extends Activity implements OnClickListener {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				Intent novoJogo = new Intent(QuestaoActivity.this, QuestaoActivity.class);
-				Bundle params = new Bundle();
-				params.putInt("categoria_nivel", id_cat_niv);
-				params.putInt("nivel", nivel_atual);
-				novoJogo.putExtras(params);
-				startActivity(novoJogo);
-				finish();
+				qid=0;
+				try {
+					qLista = qt_dao.getQuestionSet(id_cat_niv, 5);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				qAtual = qLista.get(qid);
+				setQuestions();
 				dialog.dismiss();
 				
 			}
