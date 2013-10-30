@@ -7,7 +7,6 @@ public class CategoriaNivel {
 	private int id_niv;
 	private int status_nivel;
 	
-	
 	public int getId_cat_niv() {
 		return id_cat_niv;
 	}

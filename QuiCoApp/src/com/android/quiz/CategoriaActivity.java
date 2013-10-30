@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import com.android.quiz.db.DBHelper;
 import com.android.quiz.modelo.Categoria;
@@ -34,12 +35,17 @@ public class CategoriaActivity extends Activity implements OnClickListener {
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.imgbtnSelecao:
+			try{
 			catAtual.setIdCategoria(1);
 			Intent catSelecao = new Intent(this, NivelActivity.class);
 			Bundle params = new Bundle();
 			params.putInt("categoria", catAtual.getIdCategoria());
 			catSelecao.putExtras(params);
 			startActivity(catSelecao);
+			}catch(Exception e){
+				String erro = e.getMessage();
+				Toast.makeText(getApplicationContext(), erro, Toast.LENGTH_SHORT).show();
+			}
 			break;
 		case R.id.imgbtnJogador:
 			catAtual.setIdCategoria(2);

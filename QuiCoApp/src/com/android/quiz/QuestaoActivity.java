@@ -6,7 +6,6 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -36,51 +35,48 @@ public class QuestaoActivity extends Activity implements OnClickListener {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.questao);
+		
+		//recebe os parâmetros da Activity Nível
 		Intent categoria = getIntent();
 		Bundle params = categoria.getExtras();
 		if(params != null){
 			id_cat_niv = params.getInt("categoria_nivel");
-			//cat.setIdCategoria(params.getInt("categoria"));
-			//id_cat = cat.getIdCategoria();
 			nivel_atual = params.getInt("nivel");
 		}
 		
+		//instancia a classe QuestaoDao e CategoriaNivelDao
 		qt_dao = new QuestaoDao(getApplicationContext());
 		cat_niv_dao = new CategoriaNivelDao(getApplicationContext());
 		
-		try {
-			qLista = qt_dao.getQuestionSet(id_cat_niv, 5);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		//consulta as questoes no banco de dados
+		consultaQuestoesBD();
 		
+		//seta o primeiro registro no objeto da classe questao
 		qAtual = qLista.get(qid);
 		
-		//qAtual = qLista.get(qid);
+		setQuestions();
+		
+		//inicializa os botoes
 		Button btnOpcao1 = (Button) findViewById(R.id.btnOpcao1);
 		Button btnOpcao2 = (Button) findViewById(R.id.btnOpcao2);
 		Button btnOpcao3 = (Button) findViewById(R.id.btnOpcao3);
 		Button btnOpcao4 = (Button) findViewById(R.id.btnOpcao4);
+		
+		//método para evento click do botao
 		btnOpcao1.setOnClickListener(this);
 		btnOpcao2.setOnClickListener(this);
 		btnOpcao3.setOnClickListener(this);
 		btnOpcao4.setOnClickListener(this);
-		setQuestions();
-		//ApplicationContextProvider.getBD().close();
 		
 	}
 	
 	private void setQuestions() {
-		//set the question text from current question
 		
-		
-		
-		
+		//seta a questao no textView
 		TextView txQuestao = (TextView) findViewById(R.id.txtQuestao);
         txQuestao.setText(qAtual.getQuestao());
         
-        //set the available options
+        //seta as opções nos botoes
         TextView btnOpcao1 = (TextView) findViewById(R.id.btnOpcao1);
         btnOpcao1.setText(qAtual.getOpcao1());
         
@@ -93,6 +89,7 @@ public class QuestaoActivity extends Activity implements OnClickListener {
         TextView btnOpcao4 = (TextView) findViewById(R.id.btnOpcao4);
         btnOpcao4.setText(qAtual.getOpcao4());
         
+        //incrementa o índice da lista
         qid++;
 	}
     
@@ -104,12 +101,15 @@ public class QuestaoActivity extends Activity implements OnClickListener {
 		return true;
 	}
 
+	//método para saber qual botão foi clicado
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()){
 		case R.id.btnOpcao1:
+			//pega o texto do botão
 			Button b1 = (Button)v;
 			String respostab1 = b1.getText().toString();
+			//verifica se a resposta clicada é igual a cadastrada no banco
 			verificaResposta(respostab1);
 			break;
 		case R.id.btnOpcao2:
@@ -140,23 +140,18 @@ public class QuestaoActivity extends Activity implements OnClickListener {
 				setQuestions();
 			}
 			else{
-				Log.e("ERRO", "Erro aqui!");
+				//incrementa o nivel atual
 				nivel_atual = nivel_atual + 1;
-				Log.d("DEBUG","Até aqui ok!");
-				//verifica se o nivel ainda é valido para atualizar no banco, o status
-				try{
-					if(nivel_atual<=6){
-						Log.d("DEBUG","Até aqui ok!");
-						id_cat_niv = id_cat_niv + 1;
-						Log.d("DEBUG",String.valueOf(id_cat_niv));
-						cat_niv_dao.atualizaStatusNivel(id_cat_niv, 1);
-						Log.d("DEBUG","Até aqui ok!");
+				
+				//verifica se o nivel ainda é valido para atualizar no banco, o status do nível
+				if(nivel_atual<=6){
+					
+					//incrementa o id do proximo nível, para desbloquear o botao
+					id_cat_niv = id_cat_niv + 1;
+					//atualiza o status do nivel para desbloqueado
+					cat_niv_dao.atualizaStatusNivel(id_cat_niv, 1);
+						
 					}
-				}catch(Exception e){
-					String err = (e.getMessage()==null)?"Atualização falhou":e.getMessage();
-					 
-					 Log.e("Erro", err);
-				}
 				mostrarMsgGanhou();
 				
 			} 
@@ -174,58 +169,57 @@ public class QuestaoActivity extends Activity implements OnClickListener {
 		
 		dialog.setContentView(R.layout.resposta_certa);
 		
-		dialog.setTitle("Mensagem");
+		dialog.setTitle("Ganhou");
 		dialog.setCancelable(false);
 		
 		final Button btnProxNivel = (Button)dialog.findViewById(R.id.btnProximoNivel);
 		final Button btnCategoria = (Button)dialog.findViewById(R.id.btnTelaCategoria);
 		final Button btnSair = (Button)dialog.findViewById(R.id.btnSair);
 		
+		//clicar no botão categoria
 		btnCategoria.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
+				
 				Intent cat = new Intent(QuestaoActivity.this, CategoriaActivity.class);
-				 startActivity(cat);
-				 //finish();
-				 dialog.dismiss();
+				startActivity(cat);
+				finish();
+				dialog.dismiss();
 				
 			}
 		});
+		
+		//clicar no botão próximo nível
 		btnProxNivel.setOnClickListener(new OnClickListener() {
-			
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
+				
+				//verifica se o nível ainda é válido para passar para o próximo
 				if(nivel_atual<=6){
-					qid=0;
-					try {
-						qLista = qt_dao.getQuestionSet(id_cat_niv, 5);
-					} catch (Exception e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
 					
+					qid=0;
+					consultaQuestoesBD();
 					qAtual = qLista.get(qid);
 					setQuestions();
-					//finish();
+					
 				}else{
+					//senão chama a tela de categoria
 					Intent proxCategoria = new Intent(QuestaoActivity.this, CategoriaActivity.class);
 					startActivity(proxCategoria);
 					finish();
 				}
 				 
-				
-				 dialog.dismiss();
+				dialog.dismiss();
 				
 			}
 		});
+		
+		//clicar no botão sair
 		btnSair.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				 Intent inicio = new Intent(QuestaoActivity.this, IniciarActivity.class);
 				 startActivity(inicio);
 				 finish();
@@ -237,24 +231,25 @@ public class QuestaoActivity extends Activity implements OnClickListener {
 		dialog.show();
 	}
 	
-	//método para mostrar msg se perdeu
+	//método para mostrar mensagem se perder
 	private void mostrarMsgPerdeu(){
 		
 		final Dialog dialog = new Dialog(this);
 		
 		dialog.setContentView(R.layout.resposta_errada);
-		dialog.setTitle("Mensagem");
+		dialog.setTitle("Perdeu");
 		dialog.setCancelable(false);
 		
 		final Button btnSair = (Button)dialog.findViewById(R.id.btnSair);
 		final Button btnCategoria = (Button)dialog.findViewById(R.id.btnTelaCategoria2);
 		final Button btnNovoJogo = (Button)dialog.findViewById(R.id.btnJogarNovamente);
 		
+		//clicar no botão sair
 		btnSair.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
+				
 				Intent inicio = new Intent(QuestaoActivity.this, IniciarActivity.class);
 				startActivity(inicio);
 				finish();
@@ -262,11 +257,13 @@ public class QuestaoActivity extends Activity implements OnClickListener {
 				
 			}
 		});
+		
+		//clicar no botão categoria
 		btnCategoria.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
+				
 				Intent cat = new Intent(QuestaoActivity.this, CategoriaActivity.class);
 				startActivity(cat);
 				finish();
@@ -274,19 +271,15 @@ public class QuestaoActivity extends Activity implements OnClickListener {
 				
 			}
 		});
+		
+		//clicar no botão jogar novamente
 		btnNovoJogo.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				qid=0;
-				try {
-					qLista = qt_dao.getQuestionSet(id_cat_niv, 5);
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				
+				consultaQuestoesBD();
 				qAtual = qLista.get(qid);
 				setQuestions();
 				dialog.dismiss();
@@ -297,6 +290,17 @@ public class QuestaoActivity extends Activity implements OnClickListener {
 		dialog.show();
 	}
 	
+	//consulta questões no banco de dados
+	public void consultaQuestoesBD(){
+		try {
+			qLista = qt_dao.getQuestionSet(id_cat_niv, 5);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	//fecha conexao com banco de dados
 	@Override
 	protected void onDestroy(){
 		qt_dao.close();

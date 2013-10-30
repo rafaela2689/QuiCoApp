@@ -9,90 +9,86 @@ import com.android.quiz.db.DBHelper;
 import com.android.quiz.modelo.CategoriaNivel;
 
 public class CategoriaNivelDao {
-	
+
 	private DBHelper helper;
 	private SQLiteDatabase db;
-	
-	public CategoriaNivelDao(Context contexto){
+
+	public CategoriaNivelDao(Context contexto) {
 		helper = DBHelper.instance(contexto.getApplicationContext());
 	}
-	
-	private SQLiteDatabase getDb(){
-		if (db==null){
+
+	private SQLiteDatabase getDb() {
+		if (db == null) {
 			db = helper.getWritableDatabase();
 		}
 		return db;
 	}
 
-	public void close(){
+	public void close() {
 		helper.close();
 		db = null;
 	}
-	
-	// Consulta o status do nível e da categoria.
-		public int consultaStatusNivel(int id_categoria, int id_nivel) {
-			CategoriaNivel cat_niv = new CategoriaNivel();
-			//int status;
-			Cursor cursor = null;
-			//dbQuery = this.getReadableDatabase();
-			String tabela = "status_nivel";
-			String where = "id_categoria=? AND id_nivel=?";
-			String[] coluna = new String[] { "status_nivel" };
-			String argumentos[] = new String[] { String.valueOf(id_categoria),
-					String.valueOf(id_nivel) };
 
-			cursor = getDb().query(tabela, coluna, where, argumentos, null, null,
-					null);
+	// Consulta o status do nível.
+	public int consultaStatusNivel(int id_categoria, int id_nivel) {
+		CategoriaNivel cat_niv = new CategoriaNivel();
 
-			cursor.moveToFirst();
+		Cursor cursor = null;
+		String tabela = "categoria_nivel";
+		String where = "id_categoria=? AND id_nivel=?";
+		String[] coluna = new String[] { "status_nivel" };
+		String argumentos[] = new String[] { String.valueOf(id_categoria),
+												String.valueOf(id_nivel) };
 
-			cat_niv.setStatus_nivel(cursor.getInt(cursor.getColumnIndex("status_nivel")));
+		cursor = getDb().query(tabela, coluna, where, argumentos, null, null, null);
 
-			return cat_niv.getStatus_nivel();
-		}
-		
-		/*
-		 * Atualiza o status do nível (bloqueado ou desbloqueado), recebendo como
-		 * parâmetros: id da tabela categoria, id do nível e o status que será
-		 * atualizado.
-		 */
-		public int atualizaStatusNivel(int id_categoria_nivel, int status) {
+		cursor.moveToFirst();
 
-			
-			ContentValues values = new ContentValues();
+		cat_niv.setStatus_nivel(cursor.getInt(cursor.getColumnIndex("status_nivel")));
 
-			values.put("status_nivel", status);
+		return cat_niv.getStatus_nivel();
+	}
 
-			String tabela = "status_nivel";
-			String where = "_id = ?";
-			// String[] coluna = new String[] {"status_nivel"};
-			String argumentos[] = new String[] {String.valueOf(id_categoria_nivel)};
+	/*
+	 * Atualiza o status do nível (bloqueado ou desbloqueado), recebendo como
+	 * parâmetros: id da tabela categoria, id do nível e o status que será
+	 * atualizado.
+	 */
+	public int atualizaStatusNivel(int id_categoria_nivel, int status) {
 
-			return getDb().update(tabela, values, where, argumentos);
+		ContentValues values = new ContentValues();
 
-		}
-		
-		//consulta o id da tabela status_nivel para usar na consulta de seleção da perguntas
-		public int consultaIdCategoriaNIvel(int id_categoria, int id_nivel) {
-			CategoriaNivel cat_niv = new CategoriaNivel();
-			//int status;
-			Cursor cursor = null;
-			//dbQuery = this.getReadableDatabase();
-			String tabela = "status_nivel";
-			String where = "id_categoria=? AND id_nivel=?";
-			String[] coluna = new String[] { "_id" };
-			String argumentos[] = new String[] { String.valueOf(id_categoria),
-					String.valueOf(id_nivel) };
+		values.put("status_nivel", status);
 
-			cursor = getDb().query(tabela, coluna, where, argumentos, null, null,
-					null);
+		String tabela = "categoria_nivel";
+		String where = "_id = ?";
+		String argumentos[] = new String[] { String.valueOf(id_categoria_nivel) };
 
-			cursor.moveToFirst();
+		return getDb().update(tabela, values, where, argumentos);
 
-			cat_niv.setId_cat_niv(cursor.getInt(cursor.getColumnIndex("_id")));
+	}
 
-			return cat_niv.getId_cat_niv();
-		}
-		
+	// consulta o id da tabela status_nivel para usar na consulta de seleção da
+	// perguntas
+	public int consultaIdCategoriaNIvel(int id_categoria, int id_nivel) {
+		CategoriaNivel cat_niv = new CategoriaNivel();
+
+		Cursor cursor = null;
+
+		String tabela = "categoria_nivel";
+		String where = "id_categoria=? AND id_nivel=?";
+		String[] coluna = new String[] { "_id" };
+		String argumentos[] = new String[] { String.valueOf(id_categoria),
+				String.valueOf(id_nivel) };
+
+		cursor = getDb().query(tabela, coluna, where, argumentos, null, null,
+				null);
+
+		cursor.moveToFirst();
+
+		cat_niv.setId_cat_niv(cursor.getInt(cursor.getColumnIndex("_id")));
+
+		return cat_niv.getId_cat_niv();
+	}
 
 }

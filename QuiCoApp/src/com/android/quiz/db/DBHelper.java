@@ -20,14 +20,12 @@ import com.android.quiz.modelo.Questao;
 
 public class DBHelper extends SQLiteOpenHelper {
 
-	private static DBHelper sInstance;// variavel para única instancia da base
-										// de dados
+	private static DBHelper sInstance;// variavel para única instancia da base de dados
 
-	// The Android's default system path of your application database.
+	//The Android's default system path of your application database.
 	private static String DB_PATH = "/data/data/com.android.quiz/databases/";
 	private static String DB_NAME = "bdquiz";
 	private SQLiteDatabase dbQuery;
-	// private static DBHelper sInstance = null;
 	private static final int DATABASE_VERSAO = 1;
 	private final Context dbContexto;
 
@@ -148,7 +146,6 @@ public class DBHelper extends SQLiteOpenHelper {
 	@Override
 	public void onCreate(SQLiteDatabase db) {
 		// TODO Auto-generated method stub
-		//openDataBase();
 
 	}
 
@@ -157,43 +154,6 @@ public class DBHelper extends SQLiteOpenHelper {
 		// TODO Auto-generated method stub
 
 	}
-
-	// Métodos para acessar a base de dados
-
-	// Consultar tabela categoria
-	/*public int consultarCategoria(int idCategoria) throws Exception {
-
-		Categoria cat = null;
-		Cursor mCursor = null;
-		dbQuery = this.getReadableDatabase();
-		String tabela = "categoria";
-		String where = "_id = ?";
-		String[] coluna = new String[] { "_id", "nivel_atual" };
-		String argumentos[] = new String[] { String.valueOf(idCategoria) };
-
-		mCursor = dbQuery.query(tabela, coluna, where, argumentos, null, null,
-				null);
-
-		cat = new Categoria();
-		mCursor.moveToFirst();
-		cat.setNivelAtual(mCursor.getInt(mCursor.getColumnIndex("nivel_atual")));
-
-		return cat.getNivelAtual();
-
-	}*/
-
-	// Atualiza o nível da categoria
-	/*public boolean atualizaNivelCategoria(int id_categoria, int nivel) {
-
-		dbQuery = this.getWritableDatabase();
-		ContentValues values = new ContentValues();
-
-		values.put("nivel_atual", nivel);
-
-		return dbQuery.update("categoria", values, "_id = ?",
-				new String[] { String.valueOf(id_categoria) }) > 0;
-
-	}*/
 
 	public static class Questao{
 		public static final String TAB_QUESTAO = "questao";
@@ -206,10 +166,8 @@ public class DBHelper extends SQLiteOpenHelper {
 		public static final String COL_RESPOSTA = "resposta";
 		public static final String COL_ID_CATEGORIA_NIVEL = "id_cat_nivel";
 		
-		
 		public static final String[] COLUNAS_QUESTAO = new String[]{COL_ID, COL_OPCAO_1, COL_OPCAO_2,
 														COL_OPCAO_3, COL_OPCAO_4, COL_RESPOSTA,
 														COL_ID_CATEGORIA_NIVEL};
-		
 	}
 }

@@ -32,39 +32,34 @@ public class QuestaoDao {
 	}
 	
 	// Recuperar as questões do banco de dados
-		public List<Questao> getQuestionSet(int idCatNiv, int numQ)
-				throws Exception {
+	public List<Questao> getQuestionSet(int idCatNiv, int numQ) throws Exception {
 			
-			String[] colunas = new String[] {DBHelper.Questao.COL_QUESTAO, DBHelper.Questao.COL_OPCAO_1, 
+		String[] colunas = new String[] {DBHelper.Questao.COL_QUESTAO, DBHelper.Questao.COL_OPCAO_1, 
 											DBHelper.Questao.COL_OPCAO_2, DBHelper.Questao.COL_OPCAO_3, 
 											DBHelper.Questao.COL_OPCAO_4, DBHelper.Questao.COL_RESPOSTA};
-			String where = DBHelper.Questao.COL_ID_CATEGORIA_NIVEL + " = ?";
+		String where = DBHelper.Questao.COL_ID_CATEGORIA_NIVEL + " = ?";
 			
-			String orderBy = "RANDOM() LIMIT ?";
+		String orderBy = "RANDOM() LIMIT ?";
 			
-			String argumentos[] = new String[]{String.valueOf(idCatNiv), String.valueOf(numQ)};
+		String argumentos[] = new String[]{String.valueOf(idCatNiv), String.valueOf(numQ)};
 			
-			Cursor cursor = getDb().query(DBHelper.Questao.TAB_QUESTAO, colunas, where, argumentos, null, null, orderBy);
-			/*Cursor cursor = getDb().rawQuery("SELECT "+DBHelper.Questao.COL_QUESTAO+", "+DBHelper.Questao.COL_OPCAO_1+", "
-											+DBHelper.Questao.COL_OPCAO_2+", "+DBHelper.Questao.COL_OPCAO_3+", "
-											+DBHelper.Questao.COL_OPCAO_4+", "+DBHelper.Questao.COL_RESPOSTA+
-											" FROM "+ DBHelper.Questao.TAB_QUESTAO +" WHERE "+ where + " ORDER BY "+orderBy, null);*/
-			List<Questao> questionSet = new ArrayList<Questao>();
+		Cursor cursor = getDb().query(DBHelper.Questao.TAB_QUESTAO, colunas, where, argumentos, null, null, orderBy);
 			
-			while (cursor.moveToNext()) {
-				Questao q = new Questao();
-				//q.setId(cursor.getInt(0));
-				q.setQuestao(cursor.getString(0));
-				q.setOpcao1(cursor.getString(1));
-				q.setOpcao2(cursor.getString(2));
-				q.setOpcao3(cursor.getString(3));
-				q.setOpcao4(cursor.getString(4));
-				q.setResposta(cursor.getString(5));
-				//q.setId_cat(cursor.getInt(7));
-				//q.setId_niv(cursor.getInt(8));
-				questionSet.add(q);
-			}
-			cursor.close();
-			return questionSet;
+		List<Questao> questionSet = new ArrayList<Questao>();
+			
+		while (cursor.moveToNext()) {
+			Questao q = new Questao();
+				
+			q.setQuestao(cursor.getString(0));
+			q.setOpcao1(cursor.getString(1));
+			q.setOpcao2(cursor.getString(2));
+			q.setOpcao3(cursor.getString(3));
+			q.setOpcao4(cursor.getString(4));
+			q.setResposta(cursor.getString(5));
+				
+			questionSet.add(q);
 		}
+		cursor.close();
+		return questionSet;
+	}
 }
