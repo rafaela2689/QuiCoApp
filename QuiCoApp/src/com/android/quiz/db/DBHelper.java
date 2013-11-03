@@ -1,30 +1,25 @@
 package com.android.quiz.db;
 
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.util.ArrayList;
-import java.util.List;
 
-import android.content.ContentValues;
 import android.content.Context;
-import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import com.android.quiz.modelo.Categoria;
-import com.android.quiz.modelo.Questao;
-
 public class DBHelper extends SQLiteOpenHelper {
+
 
 	private static DBHelper sInstance;// variavel para única instancia da base de dados
 
 	//The Android's default system path of your application database.
 	private static String DB_PATH = "/data/data/com.android.quiz/databases/";
-	private static String DB_NAME = "bdquiz";
+	private static String DB_NAME = "quicodb";
 	private SQLiteDatabase dbQuery;
 	private static final int DATABASE_VERSAO = 1;
 	private final Context dbContexto;
@@ -60,6 +55,7 @@ public class DBHelper extends SQLiteOpenHelper {
 	public void createDataBase() throws IOException {
 
 		boolean dbExist = checkDataBase();
+		SQLiteDatabase db_read = null;
 		if (dbExist) {
 
 		} else {
@@ -67,7 +63,8 @@ public class DBHelper extends SQLiteOpenHelper {
 			// the default system path
 			// of your application so we are gonna be able to overwrite that
 			// database with our database.
-			this.getReadableDatabase();
+			db_read = this.getReadableDatabase();
+			db_read.close();
 
 			try {
 				copyDataBase();
@@ -84,8 +81,13 @@ public class DBHelper extends SQLiteOpenHelper {
 	 * @return true if it exists, false if it doesn't
 	 */
 	private boolean checkDataBase() {
-		SQLiteDatabase checkDB = null;
-		try {
+		//SQLiteDatabase checkDB = null;
+		
+		File dbfile = new File(DB_PATH + DB_NAME);
+		return dbfile.exists();
+		/*try {
+			//String myPath = dbContexto.getFilesDir().getPath() + DB_NAME;
+			//String myPath = dbContexto.getDatabasePath(DB_NAME).getAbsolutePath();
 			String myPath = DB_PATH + DB_NAME;
 			checkDB = SQLiteDatabase.openDatabase(myPath, null,
 					SQLiteDatabase.OPEN_READONLY);
@@ -96,7 +98,7 @@ public class DBHelper extends SQLiteOpenHelper {
 			checkDB.close();
 		}
 
-		return checkDB != null ? true : false;
+		return checkDB != null ? true : false;*/
 	}
 
 	/**
@@ -111,6 +113,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
 		// Path to the just created empty db
 		String outFileName = DB_PATH + DB_NAME;
+		//String outFileName = dbContexto.getDatabasePath(DB_NAME).getAbsolutePath();
 
 		// Open the empty db as the output stream
 		OutputStream myOutput = new FileOutputStream(outFileName);
@@ -132,6 +135,7 @@ public class DBHelper extends SQLiteOpenHelper {
 	public void openDataBase() throws SQLException {
 		// Open the database
 		String myPath = DB_PATH + DB_NAME;
+		//String myPath = dbContexto.getDatabasePath(DB_NAME).getAbsolutePath();
 		dbQuery = SQLiteDatabase.openDatabase(myPath, null,
 				SQLiteDatabase.OPEN_READONLY);
 	}
