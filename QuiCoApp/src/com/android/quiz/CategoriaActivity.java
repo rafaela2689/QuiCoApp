@@ -46,6 +46,7 @@ public class CategoriaActivity extends Activity implements OnClickListener {
 				String erro = e.getMessage();
 				Toast.makeText(getApplicationContext(), erro, Toast.LENGTH_SHORT).show();
 			}
+			finish();
 			break;
 		case R.id.imgbtnJogador:
 			catAtual.setIdCategoria(2);
@@ -54,6 +55,7 @@ public class CategoriaActivity extends Activity implements OnClickListener {
 			params2.putInt("categoria", catAtual.getIdCategoria());
 			catJogadores.putExtras(params2);
 			startActivity(catJogadores);
+			finish();
 			break;
 		case R.id.imgbtnCidadeSede:
 			catAtual.setIdCategoria(3);
@@ -62,6 +64,7 @@ public class CategoriaActivity extends Activity implements OnClickListener {
 			params3.putInt("categoria", catAtual.getIdCategoria());
 			catCidadeSede.putExtras(params3);
 			startActivity(catCidadeSede);
+			finish();
 			break;
 		}
 

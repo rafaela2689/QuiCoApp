@@ -210,7 +210,7 @@ public class QuestaoActivity extends Activity implements OnClickListener {
 					finish();
 				}
 				 
-				dialog.dismiss();
+ 
 				
 			}
 		});
@@ -306,6 +306,42 @@ public class QuestaoActivity extends Activity implements OnClickListener {
 		qt_dao.close();
 		cat_niv_dao.close();
 		super.onDestroy();
+	}
+	
+	@Override
+	public void onBackPressed(){
+		final Dialog dialog = new Dialog(this);
+		
+		dialog.setContentView(R.layout.dialog_questao);
+		dialog.setTitle("Sair");
+		dialog.setCancelable(false);
+		
+		final Button btnContinuar = (Button)dialog.findViewById(R.id.btnContinuar);
+		final Button btnTerminar = (Button)dialog.findViewById(R.id.btnTerminar);
+
+		btnContinuar.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				dialog.cancel();
+				dialog.dismiss();
+				
+			}
+		});
+		
+		btnTerminar.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Intent i = new Intent (QuestaoActivity.this, IniciarActivity.class);
+				startActivity(i);
+				finish();
+				dialog.dismiss();
+			}
+		});
+		
+		dialog.show();
+		
 	}
 
 }

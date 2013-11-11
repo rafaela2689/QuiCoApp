@@ -1,6 +1,8 @@
 package com.android.quiz;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -59,6 +61,26 @@ public class IniciarActivity extends Activity {
 	public void carregaTelaSobre(){
 		Intent telaSobre = new Intent (IniciarActivity.this, SobreActivity.class);
 		startActivity(telaSobre);
+	}
+	
+	@Override
+	public void onBackPressed(){
+		AlertDialog.Builder dialogo = new AlertDialog.Builder(this);
+		dialogo.setTitle("Sair");
+		dialogo.setMessage("Tem certeza que deseja sair?");
+		dialogo.setCancelable(false);
+		dialogo.setPositiveButton("Sim", new DialogInterface.OnClickListener() {   				
+					public void onClick(DialogInterface dialog, int id){
+						
+						finish();
+					}
+			});
+		dialogo.setNegativeButton("Não", new DialogInterface.OnClickListener(){ 
+			public void onClick(DialogInterface dialog, int id) {
+			dialog.cancel();
+			}
+		});
+			dialogo.show();
 	}
 
 	@Override

@@ -34,6 +34,9 @@
     <string name="msgPerdeu">Você perdeu!</string>
     <string name="bt_jogarNovamente">Jogar Novamente</string>
     
+    <string name="txtPerguntaSair">Você pressionou o botão sair!</string>
+    <string name="btnContinuar">Continuar</string>
+    <string name="btnTerminar">Terminar</string>
     
  
 

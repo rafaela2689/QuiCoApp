@@ -65,6 +65,7 @@ public class NivelActivity extends Activity implements OnClickListener {
 			param1.putInt("nivel", 1);
 			nivel1.putExtras(param1);
 			startActivity(nivel1);
+			finish();
 			break;
 		case R.id.imgBtnNivel2:
 			
@@ -75,14 +76,47 @@ public class NivelActivity extends Activity implements OnClickListener {
 			param2.putInt("nivel", 2);
 			nivel2.putExtras(param2);
 			startActivity(nivel2);
+			finish();
 			break;
 		case R.id.imgBtnNivel3:
+			id_cat_niv = dao.consultaIdCategoriaNIvel(id_categoria, 3);
+			Intent nivel3 = new Intent(this, QuestaoActivity.class);
+			Bundle param3 = new Bundle();
+			param3.putInt("categoria_nivel", id_cat_niv);
+			param3.putInt("nivel", 2);
+			nivel3.putExtras(param3);
+			startActivity(nivel3);
+			finish();
 			break;
 		case R.id.imgBtnNivel4:
+			id_cat_niv = dao.consultaIdCategoriaNIvel(id_categoria, 4);
+			Intent nivel4 = new Intent(this, QuestaoActivity.class);
+			Bundle param4 = new Bundle();
+			param4.putInt("categoria_nivel", id_cat_niv);
+			param4.putInt("nivel", 2);
+			nivel4.putExtras(param4);
+			startActivity(nivel4);
+			finish();
 			break;
 		case R.id.imgBtnNivel5:
+			id_cat_niv = dao.consultaIdCategoriaNIvel(id_categoria, 5);
+			Intent nivel5 = new Intent(this, QuestaoActivity.class);
+			Bundle param5 = new Bundle();
+			param5.putInt("categoria_nivel", id_cat_niv);
+			param5.putInt("nivel", 2);
+			nivel5.putExtras(param5);
+			startActivity(nivel5);
+			finish();
 			break;
 		case R.id.imgBtnNivel6:
+			id_cat_niv = dao.consultaIdCategoriaNIvel(id_categoria, 6);
+			Intent nivel6 = new Intent(this, QuestaoActivity.class);
+			Bundle param6 = new Bundle();
+			param6.putInt("categoria_nivel", id_cat_niv);
+			param6.putInt("nivel", 2);
+			nivel6.putExtras(param6);
+			startActivity(nivel6);
+			finish();
 			break;
 
 		}

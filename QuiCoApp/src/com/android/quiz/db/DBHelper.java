@@ -72,7 +72,7 @@ public class DBHelper extends SQLiteOpenHelper {
 				throw new Error("Erro ao copiar base de dados!");
 			}
 		}
-	}
+	} 
 
 	/**
 	 * Check if the database already exist to avoid re-copying the file each
