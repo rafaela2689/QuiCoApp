@@ -1,46 +1,48 @@
 package com.android.quiz;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageButton;
-import android.widget.Toast;
 
 import com.android.quiz.dao.CategoriaNivelDao;
-import com.android.quiz.modelo.Categoria;
 
 public class NivelActivity extends Activity implements OnClickListener {
 
 	public static final String CATEGORIA_NIVEL = "categoria_nivel";
 	public static final String NIVEL = "nivel";
+	public static final String CATEGORIA = "categoria";
 	ImageButton btnNivel1, btnNivel2, btnNivel3, btnNivel4, btnNivel5, btnNivel6;
-	Categoria cat;
 	int id_categoria;
 	int id_cat_niv;
 	CategoriaNivelDao dao;
 
+	List<ImageButton> botoes = new ArrayList<ImageButton>();
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
-		//recebe o parametros da Activity Categoria
+
+		// recebe o parametros da Activity Categoria
 		Intent nivel = getIntent();
 		Bundle params = nivel.getExtras();
 		if (params != null) {
-			id_categoria = params.getInt("categoria");
+			id_categoria = params.getInt(CATEGORIA);
 			setContentView(R.layout.nivel);
 		}
-		
+
 		btnNivel1 = (ImageButton) findViewById(R.id.imgBtnNivel1);
 		btnNivel2 = (ImageButton) findViewById(R.id.imgBtnNivel2);
 		btnNivel3 = (ImageButton) findViewById(R.id.imgBtnNivel3);
 		btnNivel4 = (ImageButton) findViewById(R.id.imgBtnNivel4);
 		btnNivel5 = (ImageButton) findViewById(R.id.imgBtnNivel5);
 		btnNivel6 = (ImageButton) findViewById(R.id.imgBtnNivel6);
-		
+
 		btnNivel1.setOnClickListener(this);
 		btnNivel2.setOnClickListener(this);
 		btnNivel3.setOnClickListener(this);
@@ -48,170 +50,86 @@ public class NivelActivity extends Activity implements OnClickListener {
 		btnNivel5.setOnClickListener(this);
 		btnNivel6.setOnClickListener(this);
 
+		botoes.add(btnNivel1);
+		botoes.add(btnNivel2);
+		botoes.add(btnNivel3);
+		botoes.add(btnNivel4);
+		botoes.add(btnNivel5);
+		botoes.add(btnNivel6);
+
 		verificaStatusCategoriaNivel(id_categoria);
 	}
 
 	@Override
 	public void onClick(View v) {
-		// TODO Auto-generated method stub
-		cat = new Categoria();
 		switch (v.getId()) {
 		case R.id.imgBtnNivel1:
-			//consulta o id da tabela categoria_nivel
-			id_cat_niv = dao.consultaIdCategoriaNIvel(id_categoria, 1);
-			Intent nivel1 = new Intent(this, QuestaoActivity.class);
-			Bundle param1 = new Bundle();
-			param1.putInt("categoria_nivel", id_cat_niv);
-			param1.putInt("nivel", 1);
-			nivel1.putExtras(param1);
-			startActivity(nivel1);
-			finish();
+			chamaTelaQuestao(NivelEnum.NIVEL1);
 			break;
 		case R.id.imgBtnNivel2:
-			
-			id_cat_niv = dao.consultaIdCategoriaNIvel(id_categoria, 2);
-			Intent nivel2 = new Intent(this, QuestaoActivity.class);
-			Bundle param2 = new Bundle();
-			param2.putInt("categoria_nivel", id_cat_niv);
-			param2.putInt("nivel", 2);
-			nivel2.putExtras(param2);
-			startActivity(nivel2);
+			chamaTelaQuestao(NivelEnum.NIVEL2);
 			finish();
 			break;
 		case R.id.imgBtnNivel3:
-			id_cat_niv = dao.consultaIdCategoriaNIvel(id_categoria, 3);
-			Intent nivel3 = new Intent(this, QuestaoActivity.class);
-			Bundle param3 = new Bundle();
-			param3.putInt("categoria_nivel", id_cat_niv);
-			param3.putInt("nivel", 2);
-			nivel3.putExtras(param3);
-			startActivity(nivel3);
+			chamaTelaQuestao(NivelEnum.NIVEL3);
 			finish();
 			break;
 		case R.id.imgBtnNivel4:
-			id_cat_niv = dao.consultaIdCategoriaNIvel(id_categoria, 4);
-			Intent nivel4 = new Intent(this, QuestaoActivity.class);
-			Bundle param4 = new Bundle();
-			param4.putInt("categoria_nivel", id_cat_niv);
-			param4.putInt("nivel", 2);
-			nivel4.putExtras(param4);
-			startActivity(nivel4);
+			chamaTelaQuestao(NivelEnum.NIVEL4);
 			finish();
 			break;
 		case R.id.imgBtnNivel5:
-			id_cat_niv = dao.consultaIdCategoriaNIvel(id_categoria, 5);
-			Intent nivel5 = new Intent(this, QuestaoActivity.class);
-			Bundle param5 = new Bundle();
-			param5.putInt("categoria_nivel", id_cat_niv);
-			param5.putInt("nivel", 2);
-			nivel5.putExtras(param5);
-			startActivity(nivel5);
-			finish();
+			chamaTelaQuestao(NivelEnum.NIVEL5);
 			break;
 		case R.id.imgBtnNivel6:
-			id_cat_niv = dao.consultaIdCategoriaNIvel(id_categoria, 6);
-			Intent nivel6 = new Intent(this, QuestaoActivity.class);
-			Bundle param6 = new Bundle();
-			param6.putInt("categoria_nivel", id_cat_niv);
-			param6.putInt("nivel", 6);
-			nivel6.putExtras(param6);
-			startActivity(nivel6);
-			finish();
+			chamaTelaQuestao(NivelEnum.NIVEL6);
 			break;
 
 		}
 
 	}
 
-	//verifica o status do nivel para cada categoria
-	public void verificaStatusCategoriaNivel(int categoria) {
-		if (categoria == 1) {
-			verificaStatusNivel(categoria, 1);
-			verificaStatusNivel(categoria, 2);
-			verificaStatusNivel(categoria, 3);
-			verificaStatusNivel(categoria, 4);
-			verificaStatusNivel(categoria, 5);
-			verificaStatusNivel(categoria, 6);
-		}
-		if (categoria == 2) {
-			verificaStatusNivel(categoria, 1);
-			verificaStatusNivel(categoria, 2);
-			verificaStatusNivel(categoria, 3);
-			verificaStatusNivel(categoria, 4);
-			verificaStatusNivel(categoria, 5);
-			verificaStatusNivel(categoria, 6);
-		}
-		if (categoria == 3) {
-			verificaStatusNivel(categoria, 1);
-			verificaStatusNivel(categoria, 2);
-			verificaStatusNivel(categoria, 3);
-			verificaStatusNivel(categoria, 4);
-			verificaStatusNivel(categoria, 5);
-			verificaStatusNivel(categoria, 6);
-		}
+	public void chamaTelaQuestao(NivelEnum niv) {
+
+		id_cat_niv = dao.consultaIdCategoriaNIvel(id_categoria, niv.getNivel());
+		Intent nivel = new Intent(this, QuestaoActivity.class);
+		Bundle param = new Bundle();
+		param.putInt(CATEGORIA_NIVEL, id_cat_niv);
+		param.putInt(NIVEL, niv.getNivel());
+		nivel.putExtras(param);
+		startActivity(nivel);
+		finish();
 
 	}
 
-	//verifica o status do nível para habilitar ou desabilitar os botões 
+	// verifica o status do nivel para cada categoria
+	public void verificaStatusCategoriaNivel(int categoria) {
+
+		for (int i = 1; i <= 6; i++) {
+			verificaStatusNivel(categoria, i);
+
+		}
+	}
+
+	// verifica o status do nível para habilitar ou desabilitar os botões
 	public void verificaStatusNivel(int categoria, int nivel) {
 
 		dao = new CategoriaNivelDao(getApplicationContext());
-		int status;
+		List<Integer> listStatus = null;
+		int cont = 0;
+		try {
+			listStatus = dao.getListaStatusNivel(categoria);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
-		if (nivel == 1) {
-			status = dao.consultaStatusNivel(categoria, nivel);
+		for (Integer status : listStatus) {
 			if (status == 1) {
-				btnNivel1.setEnabled(true);
+				botoes.get(cont).setEnabled(true);
 			} else {
-				btnNivel1.setEnabled(false);
+				botoes.get(cont).setEnabled(false);
 			}
-		}
-		if (nivel == 2) {
-			status = dao.consultaStatusNivel(categoria, nivel);
-			if (status == 1) {
-				btnNivel2.setEnabled(true);
-			} else {
-				btnNivel2.setEnabled(false);
-			}
-		}
-		if (nivel == 3) {
-			status = dao.consultaStatusNivel(categoria, nivel);
-			if (status == 1) {
-				btnNivel3.setEnabled(true);
-			} else {
-				btnNivel3.setEnabled(false);
-			}
-		}
-		if (nivel == 4) {
-			status = dao.consultaStatusNivel(categoria, nivel);
-			if (status == 1) {
-				btnNivel4.setEnabled(true);
-			} else {
-				btnNivel4.setEnabled(false);
-			}
-		}
-		if (nivel == 5) {
-			status = dao.consultaStatusNivel(categoria, nivel);
-			if (status == 1) {
-				btnNivel5.setEnabled(true);
-			} else {
-				btnNivel5.setEnabled(false);
-			}
-		}
-		if (nivel == 6) {
-			status = dao.consultaStatusNivel(categoria, nivel);
-			if (status == 1) {
-				btnNivel6.setEnabled(true);
-			} else {
-				btnNivel6.setEnabled(false);
-			}
+			cont++;
 		}
 	}
-
-	// fecha conexao do banco de dados
-	/*@Override
-	protected void onDestroy() {
-		dao.close();
-		super.onDestroy();
-	}*/
 }

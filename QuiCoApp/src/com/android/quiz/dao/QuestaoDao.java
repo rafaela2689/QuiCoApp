@@ -3,7 +3,6 @@ package com.android.quiz.dao;
 import java.util.ArrayList;
 import java.util.List;
 
-import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
@@ -12,24 +11,9 @@ import com.android.quiz.modelo.Questao;
 
 public class QuestaoDao {
 
-	private DBHelper helper;
-	private SQLiteDatabase db;
-
-	public QuestaoDao(Context contexto) {
-		helper = DBHelper.instance(contexto.getApplicationContext());
-	}
-
 	private SQLiteDatabase getDb() {
-		if (db == null) {
-			db = helper.getReadableDatabase();
-		}
-		return db;
+		return DBHelper.getDataBase();
 	}
-
-	/*public void close() {
-		helper.close();
-		db = null;
-	}*/
 
 	// Recuperar as questões do banco de dados
 	public List<Questao> getQuestionSet(int idCatNiv, int numQ)

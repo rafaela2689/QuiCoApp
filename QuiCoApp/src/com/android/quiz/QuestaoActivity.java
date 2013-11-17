@@ -47,7 +47,7 @@ public class QuestaoActivity extends Activity implements OnClickListener {
 		}
 
 		// instancia a classe QuestaoDao e CategoriaNivelDao
-		qt_dao = new QuestaoDao(getApplicationContext());
+		qt_dao = new QuestaoDao();
 		cat_niv_dao = new CategoriaNivelDao(getApplicationContext());
 
 		// consulta as questoes no banco de dados

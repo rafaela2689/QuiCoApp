@@ -9,7 +9,6 @@ import java.io.OutputStream;
 import android.content.Context;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 
 public class DBHelper extends SQLiteOpenHelper {
@@ -20,7 +19,7 @@ public class DBHelper extends SQLiteOpenHelper {
 	//The Android's default system path of your application database.
 	private static String DB_PATH = "/data/data/com.android.quiz/databases/";
 	private static String DB_NAME = "quicodb";
-	private SQLiteDatabase dbQuery;
+	private static SQLiteDatabase dbQuery;
 	private static final int DATABASE_VERSAO = 1;
 	private final Context dbContexto;
 
@@ -36,12 +35,19 @@ public class DBHelper extends SQLiteOpenHelper {
 		}
 	}
 
+	public static SQLiteDatabase getDataBase() {
+		if (dbQuery == null) {
+			dbQuery = sInstance.getWritableDatabase();
+		}
+		return dbQuery;
+	}
+	
 	/**
 	 * Singleton for DataBase
 	 * 
 	 * @return singleton instance
 	 */
-	public static synchronized DBHelper instance(Context context) {
+	public static synchronized DBHelper createInstance(Context context) {
 		if (sInstance == null) {
 			sInstance = new DBHelper(context.getApplicationContext());
 		}
@@ -139,13 +145,13 @@ public class DBHelper extends SQLiteOpenHelper {
 				SQLiteDatabase.OPEN_READONLY);
 	}
 
-	@Override
-	public synchronized void close() {
-		if (dbQuery != null)
+	public static void fechar() {
+		if (sInstance != null) {
 			dbQuery.close();
-		super.close();
+			sInstance.close();
+		}
 	}
-
+	
 	@Override
 	public void onCreate(SQLiteDatabase db) {
 		// TODO Auto-generated method stub
