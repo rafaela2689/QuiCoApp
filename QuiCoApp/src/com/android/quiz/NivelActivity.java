@@ -113,7 +113,7 @@ public class NivelActivity extends Activity implements OnClickListener {
 			Intent nivel6 = new Intent(this, QuestaoActivity.class);
 			Bundle param6 = new Bundle();
 			param6.putInt("categoria_nivel", id_cat_niv);
-			param6.putInt("nivel", 2);
+			param6.putInt("nivel", 6);
 			nivel6.putExtras(param6);
 			startActivity(nivel6);
 			finish();
@@ -209,9 +209,9 @@ public class NivelActivity extends Activity implements OnClickListener {
 	}
 
 	// fecha conexao do banco de dados
-	@Override
+	/*@Override
 	protected void onDestroy() {
 		dao.close();
 		super.onDestroy();
-	}
+	}*/
 }

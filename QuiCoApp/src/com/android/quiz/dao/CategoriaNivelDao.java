@@ -24,10 +24,10 @@ public class CategoriaNivelDao {
 		return db;
 	}
 
-	public void close() {
+	/*public void close() {
 		helper.close();
 		db = null;
-	}
+	}*/
 
 	// Consulta o status do nível.
 	public int consultaStatusNivel(int id_categoria, int id_nivel) {
@@ -45,6 +45,8 @@ public class CategoriaNivelDao {
 		cursor.moveToFirst();
 
 		cat_niv.setStatus_nivel(cursor.getInt(cursor.getColumnIndex("status_nivel")));
+		
+		cursor.close();
 
 		return cat_niv.getStatus_nivel();
 	}
@@ -87,6 +89,8 @@ public class CategoriaNivelDao {
 		cursor.moveToFirst();
 
 		cat_niv.setId_cat_niv(cursor.getInt(cursor.getColumnIndex("_id")));
+		
+		cursor.close();
 
 		return cat_niv.getId_cat_niv();
 	}

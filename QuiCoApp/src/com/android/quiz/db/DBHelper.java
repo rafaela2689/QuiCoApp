@@ -41,7 +41,7 @@ public class DBHelper extends SQLiteOpenHelper {
 	 * 
 	 * @return singleton instance
 	 */
-	public static DBHelper instance(Context context) {
+	public static synchronized DBHelper instance(Context context) {
 		if (sInstance == null) {
 			sInstance = new DBHelper(context.getApplicationContext());
 		}
@@ -55,7 +55,7 @@ public class DBHelper extends SQLiteOpenHelper {
 	public void createDataBase() throws IOException {
 
 		boolean dbExist = checkDataBase();
-		SQLiteDatabase db_read = null;
+		//SQLiteDatabase db_read = null;
 		if (dbExist) {
 
 		} else {
@@ -63,8 +63,7 @@ public class DBHelper extends SQLiteOpenHelper {
 			// the default system path
 			// of your application so we are gonna be able to overwrite that
 			// database with our database.
-			db_read = this.getReadableDatabase();
-			db_read.close();
+			this.getReadableDatabase();
 
 			try {
 				copyDataBase();

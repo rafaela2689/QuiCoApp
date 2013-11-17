@@ -25,19 +25,16 @@
     <string name="bt_cat_selecao">Seleções</string>
     <string name="bt_cat_cidade_sede">Cidades Sede</string>
     <string name="bt_cat_jogadores">Jogadores</string>
-    
     <string name="msgGanhou">Parabéns! Você ganhou!</string>
     <string name="bt_prox_nivel">Próximo</string>
     <string name="bt_categoria">Categoria</string>
     <string name="bt_sair">Sair</string>
-    
     <string name="msgPerdeu">Você perdeu!</string>
     <string name="bt_jogarNovamente">Jogar Novamente</string>
-    
     <string name="txtPerguntaSair">Você pressionou o botão sair!</string>
     <string name="btnContinuar">Continuar</string>
     <string name="btnTerminar">Terminar</string>
-    
- 
+    <string name="title_activity_splash">SplashActivity</string>
+    <string name="txt_splash">Carregando...</string>
 
 </resources>
