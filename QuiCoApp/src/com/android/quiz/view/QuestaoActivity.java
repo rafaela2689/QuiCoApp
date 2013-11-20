@@ -15,8 +15,6 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.android.quiz.R;
-import com.android.quiz.R.id;
-import com.android.quiz.R.layout;
 import com.android.quiz.dao.CategoriaNivelDao;
 import com.android.quiz.dao.QuestaoDao;
 import com.android.quiz.modelo.Questao;
@@ -72,15 +70,16 @@ public class QuestaoActivity extends Activity implements OnClickListener {
 		btnOpcao3.setOnClickListener(this);
 		btnOpcao4.setOnClickListener(this);
 
-		if (isXLargeScreen(getApplicationContext()))
-			setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-		else
+		if (isSmartPhone(getApplicationContext()))
 			setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+		else
+			setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 
 	}
 
-	public static boolean isXLargeScreen(Context context) {
-		return (context.getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) >= Configuration.SCREENLAYOUT_SIZE_XLARGE;
+	public static boolean isSmartPhone(Context context) {
+		final int screenLayout = context.getResources().getConfiguration().screenLayout;
+		return ((screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) < Configuration.SCREENLAYOUT_SIZE_LARGE);
 	}
 
 	private void setQuestions() {
