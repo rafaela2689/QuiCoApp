@@ -32,7 +32,7 @@ public class IniciarActivity extends Activity implements OnClickListener {
 
 	@Override
 	public void onClick(View v) {
-		// TODO Auto-generated method stub
+		
 		switch (v.getId()) {
 		case R.id.btnIniciar:
 			carregaTelaIniciar();

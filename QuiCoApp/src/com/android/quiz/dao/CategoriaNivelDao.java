@@ -13,6 +13,12 @@ import com.android.quiz.modelo.CategoriaNivel;
 
 public class CategoriaNivelDao {
 
+	public static final String TABELA = "categoria_nivel";
+	public static final String COL_ID_CATEGORIA = "id_categoria";
+	public static final String COL_ID_NIVEL = "id_nivel";
+	public static final String COL_STATUS_NIVEL = "status_nivel";
+	public static final String COL_ID = "_id";
+
 	private DBHelper helper;
 	private SQLiteDatabase db;
 
@@ -27,23 +33,24 @@ public class CategoriaNivelDao {
 		return db;
 	}
 
-
 	// Consulta o status do nível.
 	public int consultaStatusNivel(int id_categoria, int id_nivel) {
+
 		CategoriaNivel cat_niv = new CategoriaNivel();
 		Cursor cursor = null;
-		String tabela = "categoria_nivel";
-		String where = "id_categoria=? AND id_nivel=?";
-		String[] coluna = new String[] { "status_nivel" };
+		String where = COL_ID_CATEGORIA + " = ? AND " + COL_ID_NIVEL + " = ? ";
+		String[] colunas = new String[] { COL_STATUS_NIVEL };
 		String argumentos[] = new String[] { String.valueOf(id_categoria),
-												String.valueOf(id_nivel) };
+				String.valueOf(id_nivel) };
 
-		cursor = getDb().query(tabela, coluna, where, argumentos, null, null, null);
+		cursor = getDb().query(TABELA, colunas, where, argumentos, null, null,
+				null);
 
 		cursor.moveToFirst();
 
-		cat_niv.setStatus_nivel(cursor.getInt(cursor.getColumnIndex("status_nivel")));
-		
+		cat_niv.setStatus_nivel(cursor.getInt(cursor
+				.getColumnIndex(COL_STATUS_NIVEL)));
+
 		cursor.close();
 
 		return cat_niv.getStatus_nivel();
@@ -60,14 +67,14 @@ public class CategoriaNivelDao {
 			getDb().beginTransaction();
 			getDb().execSQL("PRAGMA foreign_keys = on;");
 			ContentValues values = new ContentValues();
-	
-			values.put("status_nivel", status);
-	
-			String tabela = "categoria_nivel";
-			String where = "_id = ?";
-			String argumentos[] = new String[] { String.valueOf(id_categoria_nivel) };
-	
-			id = getDb().update(tabela, values, where, argumentos);
+
+			values.put(COL_STATUS_NIVEL, status);
+
+			String where = COL_ID + " = ?";
+			String argumentos[] = new String[] { String
+					.valueOf(id_categoria_nivel) };
+
+			id = getDb().update(TABELA, values, where, argumentos);
 			getDb().setTransactionSuccessful();
 		} finally {
 			getDb().endTransaction();
@@ -83,60 +90,55 @@ public class CategoriaNivelDao {
 
 		Cursor cursor = null;
 
-		String tabela = "categoria_nivel";
-		String where = "id_categoria=? AND id_nivel=?";
-		String[] coluna = new String[] { "_id" };
+		String where = COL_ID_CATEGORIA + " = ? AND " + COL_ID_NIVEL + " = ? ";
+		String[] coluna = new String[] { COL_ID };
 		String argumentos[] = new String[] { String.valueOf(id_categoria),
 				String.valueOf(id_nivel) };
 
-		cursor = getDb().query(tabela, coluna, where, argumentos, null, null,
+		cursor = getDb().query(TABELA, coluna, where, argumentos, null, null,
 				null);
 
 		cursor.moveToFirst();
 
-		cat_niv.setId_cat_niv(cursor.getInt(cursor.getColumnIndex("_id")));
-		
+		cat_niv.setId_cat_niv(cursor.getInt(cursor.getColumnIndex(COL_ID)));
+
 		cursor.close();
 
 		return cat_niv.getId_cat_niv();
 	}
-	
+
 	// Recuperar lista dos status por categoria
-		public List<Integer> getListaStatusNivel(int idCategoria)
-				throws Exception {
+	public List<Integer> getListaStatusNivel(int idCategoria) throws Exception {
 
-			String tabela = "categoria_nivel";
-			
-			String[] coluna = new String[] {"status_nivel"};
-			
-			String where = "id_categoria = ?";
+		String[] coluna = new String[] { COL_STATUS_NIVEL };
 
-			String orderBy = "id_nivel";
+		String where = COL_ID_CATEGORIA + " = ? ";
 
-			String argumentos[] = new String[] { String.valueOf(idCategoria)};
+		String orderBy = COL_ID_NIVEL;
 
-			Cursor cursor = getDb().query(tabela, coluna,
-					where, argumentos, null, null, orderBy);
+		String argumentos[] = new String[] { String.valueOf(idCategoria) };
 
-			List<Integer> listaStatus = new ArrayList<Integer>();
+		Cursor cursor = getDb().query(TABELA, coluna, where, argumentos, null,
+				null, orderBy);
 
-			try {
-				while (cursor.moveToNext()) {
-					
+		List<Integer> listaStatus = new ArrayList<Integer>();
 
-					int status = cursor.getInt(cursor.getColumnIndex("status_nivel"));
-					listaStatus.add(status);
+		try {
+			while (cursor.moveToNext()) {
 
-				}
-			} finally { 
-				if (cursor != null && !cursor.isClosed()) {
-					cursor.close();
-				}
+				int status = cursor.getInt(cursor
+						.getColumnIndex(COL_STATUS_NIVEL));
+				listaStatus.add(status);
+
 			}
-
-			return listaStatus;
-
+		} finally {
+			if (cursor != null && !cursor.isClosed()) {
+				cursor.close();
+			}
 		}
 
+		return listaStatus;
+
+	}
 
 }

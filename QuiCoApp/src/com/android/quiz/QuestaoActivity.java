@@ -16,13 +16,12 @@ import android.widget.TextView;
 
 import com.android.quiz.dao.CategoriaNivelDao;
 import com.android.quiz.dao.QuestaoDao;
-import com.android.quiz.modelo.Categoria;
 import com.android.quiz.modelo.Questao;
 
 public class QuestaoActivity extends Activity implements OnClickListener {
 
 	List<Questao> qLista;
-	Categoria cat = new Categoria();
+	
 	int id_cat_niv = 0;
 	int nivel_atual = 0;
 	Questao qAtual;

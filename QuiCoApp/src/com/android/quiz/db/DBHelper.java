@@ -61,7 +61,7 @@ public class DBHelper extends SQLiteOpenHelper {
 	public void createDataBase() throws IOException {
 
 		boolean dbExist = checkDataBase();
-		//SQLiteDatabase db_read = null;
+		SQLiteDatabase db_read = null;
 		if (dbExist) {
 
 		} else {
@@ -69,7 +69,8 @@ public class DBHelper extends SQLiteOpenHelper {
 			// the default system path
 			// of your application so we are gonna be able to overwrite that
 			// database with our database.
-			this.getReadableDatabase();
+			db_read = this.getReadableDatabase();
+			db_read.close();
 
 			try {
 				copyDataBase();
@@ -86,24 +87,10 @@ public class DBHelper extends SQLiteOpenHelper {
 	 * @return true if it exists, false if it doesn't
 	 */
 	private boolean checkDataBase() {
-		//SQLiteDatabase checkDB = null;
 		
 		File dbfile = new File(DB_PATH + DB_NAME);
 		return dbfile.exists();
-		/*try {
-			//String myPath = dbContexto.getFilesDir().getPath() + DB_NAME;
-			//String myPath = dbContexto.getDatabasePath(DB_NAME).getAbsolutePath();
-			String myPath = DB_PATH + DB_NAME;
-			checkDB = SQLiteDatabase.openDatabase(myPath, null,
-					SQLiteDatabase.OPEN_READONLY);
-		} catch (SQLiteException e) {
-			// database does't exist yet.
-		}
-		if (checkDB != null) {
-			checkDB.close();
-		}
 
-		return checkDB != null ? true : false;*/
 	}
 
 	/**
@@ -114,11 +101,10 @@ public class DBHelper extends SQLiteOpenHelper {
 	private void copyDataBase() throws IOException {
 
 		// Open your local db as the input stream
-		InputStream myInput = dbContexto.getAssets().open(DB_NAME);// dbContexto.getAssets().open(DB_NAME);
+		InputStream myInput = dbContexto.getAssets().open(DB_NAME);
 
 		// Path to the just created empty db
 		String outFileName = DB_PATH + DB_NAME;
-		//String outFileName = dbContexto.getDatabasePath(DB_NAME).getAbsolutePath();
 
 		// Open the empty db as the output stream
 		OutputStream myOutput = new FileOutputStream(outFileName);
@@ -140,7 +126,6 @@ public class DBHelper extends SQLiteOpenHelper {
 	public void openDataBase() throws SQLException {
 		// Open the database
 		String myPath = DB_PATH + DB_NAME;
-		//String myPath = dbContexto.getDatabasePath(DB_NAME).getAbsolutePath();
 		dbQuery = SQLiteDatabase.openDatabase(myPath, null,
 				SQLiteDatabase.OPEN_READONLY);
 	}
@@ -164,19 +149,4 @@ public class DBHelper extends SQLiteOpenHelper {
 
 	}
 
-	public static class Questao{
-		public static final String TAB_QUESTAO = "questao";
-		public static final String COL_ID = "_id";
-		public static final String COL_QUESTAO = "t_questao";
-		public static final String COL_OPCAO_1 = "opcao1";
-		public static final String COL_OPCAO_2 = "opcao2";
-		public static final String COL_OPCAO_3 = "opcao3";
-		public static final String COL_OPCAO_4 = "opcao4";
-		public static final String COL_RESPOSTA = "resposta";
-		public static final String COL_ID_CATEGORIA_NIVEL = "id_cat_nivel";
-		
-		public static final String[] COLUNAS_QUESTAO = new String[]{COL_ID, COL_OPCAO_1, COL_OPCAO_2,
-														COL_OPCAO_3, COL_OPCAO_4, COL_RESPOSTA,
-														COL_ID_CATEGORIA_NIVEL};
-	}
 }
