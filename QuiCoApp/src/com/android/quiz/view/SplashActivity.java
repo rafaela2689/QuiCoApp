@@ -1,4 +1,7 @@
-package com.android.quiz;
+package com.android.quiz.view;
+
+import com.android.quiz.R;
+import com.android.quiz.R.layout;
 
 import android.app.Activity;
 import android.content.Intent;

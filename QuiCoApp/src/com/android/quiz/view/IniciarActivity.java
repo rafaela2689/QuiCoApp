@@ -1,4 +1,4 @@
-package com.android.quiz;
+package com.android.quiz.view;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -9,6 +9,9 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
+import com.android.quiz.R;
+import com.android.quiz.R.id;
+import com.android.quiz.R.layout;
 import com.android.quiz.db.DBHelper;
 
 public class IniciarActivity extends Activity implements OnClickListener {

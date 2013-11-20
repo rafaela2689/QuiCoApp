@@ -1,4 +1,4 @@
-package com.android.quiz;
+package com.android.quiz.view;
 
 import java.util.List;
 
@@ -14,6 +14,9 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.android.quiz.R;
+import com.android.quiz.R.id;
+import com.android.quiz.R.layout;
 import com.android.quiz.dao.CategoriaNivelDao;
 import com.android.quiz.dao.QuestaoDao;
 import com.android.quiz.modelo.Questao;

@@ -1,4 +1,4 @@
-package com.android.quiz;
+package com.android.quiz.view;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +10,11 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageButton;
 
+import com.android.quiz.R;
+import com.android.quiz.R.id;
+import com.android.quiz.R.layout;
 import com.android.quiz.dao.CategoriaNivelDao;
+import com.android.quiz.enumerado.NivelEnum;
 
 public class NivelActivity extends Activity implements OnClickListener {
 

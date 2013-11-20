@@ -15,7 +15,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.android.quiz.SplashActivity"
+            android:name="com.android.quiz.view.SplashActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,7 +23,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.android.quiz.IniciarActivity"
+            android:name="com.android.quiz.view.IniciarActivity"
             android:label="@string/app_name"
             android:launchMode="singleInstance" >
             <intent-filter>
@@ -32,23 +32,23 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.android.quiz.CategoriaActivity"
+            android:name="com.android.quiz.view.CategoriaActivity"
             android:label="@string/title_activity_categoria" >
         </activity>
         <activity
-            android:name="com.android.quiz.NivelActivity"
+            android:name="com.android.quiz.view.NivelActivity"
             android:label="@string/title_activity_nivel" >
         </activity>
         <activity
-            android:name="com.android.quiz.QuestaoActivity"
+            android:name="com.android.quiz.view.QuestaoActivity"
             android:label="@string/title_activity_questao" >
         </activity>
         <activity
-            android:name="com.android.quiz.SobreActivity"
+            android:name="com.android.quiz.view.SobreActivity"
             android:label="@string/title_activity_sobre" >
         </activity>
         <activity
-            android:name="com.android.quiz.AjudaActivity"
+            android:name="com.android.quiz.view.AjudaActivity"
             android:label="@string/title_activity_ajuda" >
         </activity>
         

@@ -1,4 +1,8 @@
-package com.android.quiz;
+package com.android.quiz.view;
+
+import com.android.quiz.R;
+import com.android.quiz.R.layout;
+import com.android.quiz.R.menu;
 
 import android.os.Bundle;
 import android.app.Activity;

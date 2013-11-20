@@ -1,4 +1,4 @@
-package com.android.quiz;
+package com.android.quiz.enumerado;
 
 public enum CategoriaEnum {
 
