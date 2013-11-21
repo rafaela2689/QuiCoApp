@@ -13,12 +13,6 @@ import com.android.quiz.modelo.CategoriaNivel;
 
 public class CategoriaNivelDao {
 
-	public static final String TABELA = "categoria_nivel";
-	public static final String COL_ID_CATEGORIA = "id_categoria";
-	public static final String COL_ID_NIVEL = "id_nivel";
-	public static final String COL_STATUS_NIVEL = "status_nivel";
-	public static final String COL_ID = "_id";
-
 	private DBHelper helper;
 	private SQLiteDatabase db;
 
@@ -36,24 +30,24 @@ public class CategoriaNivelDao {
 	// Consulta o status do nível.
 	public int consultaStatusNivel(int id_categoria, int id_nivel) {
 
-		CategoriaNivel cat_niv = new CategoriaNivel();
+		CategoriaNivel catNiv = new CategoriaNivel();
 		Cursor cursor = null;
-		String where = COL_ID_CATEGORIA + " = ? AND " + COL_ID_NIVEL + " = ? ";
-		String[] colunas = new String[] { COL_STATUS_NIVEL };
+		String where = CategoriaNivel.COL_ID_CATEGORIA + " = ? AND " + CategoriaNivel.COL_ID_NIVEL + " = ? ";
+		String[] colunas = new String[] { CategoriaNivel.COL_STATUS_NIVEL };
 		String argumentos[] = new String[] { String.valueOf(id_categoria),
 				String.valueOf(id_nivel) };
 
-		cursor = getDb().query(TABELA, colunas, where, argumentos, null, null,
+		cursor = getDb().query(CategoriaNivel.TABELA, colunas, where, argumentos, null, null,
 				null);
 
 		cursor.moveToFirst();
 
-		cat_niv.setStatus_nivel(cursor.getInt(cursor
-				.getColumnIndex(COL_STATUS_NIVEL)));
+		catNiv.setStatusNivel(cursor.getInt(cursor
+				.getColumnIndex(CategoriaNivel.COL_STATUS_NIVEL)));
 
 		cursor.close();
 
-		return cat_niv.getStatus_nivel();
+		return catNiv.getStatusNivel();
 	}
 
 	/*
@@ -68,13 +62,13 @@ public class CategoriaNivelDao {
 			getDb().execSQL("PRAGMA foreign_keys = on;");
 			ContentValues values = new ContentValues();
 
-			values.put(COL_STATUS_NIVEL, status);
+			values.put(CategoriaNivel.COL_STATUS_NIVEL, status);
 
-			String where = COL_ID + " = ?";
+			String where = CategoriaNivel.COL_ID + " = ?";
 			String argumentos[] = new String[] { String
 					.valueOf(id_categoria_nivel) };
 
-			id = getDb().update(TABELA, values, where, argumentos);
+			id = getDb().update(CategoriaNivel.TABELA, values, where, argumentos);
 			getDb().setTransactionSuccessful();
 		} finally {
 			getDb().endTransaction();
@@ -85,40 +79,40 @@ public class CategoriaNivelDao {
 
 	// consulta o id da tabela status_nivel para usar na consulta de seleção da
 	// perguntas
-	public int consultaIdCategoriaNIvel(int id_categoria, int id_nivel) {
-		CategoriaNivel cat_niv = new CategoriaNivel();
+	public int consultaIdCategoriaNivel(int id_categoria, int id_nivel) {
+		CategoriaNivel catNiv = new CategoriaNivel();
 
 		Cursor cursor = null;
 
-		String where = COL_ID_CATEGORIA + " = ? AND " + COL_ID_NIVEL + " = ? ";
-		String[] coluna = new String[] { COL_ID };
+		String where = CategoriaNivel.COL_ID_CATEGORIA + " = ? AND " + CategoriaNivel.COL_ID_NIVEL + " = ? ";
+		String[] coluna = new String[] { CategoriaNivel.COL_ID };
 		String argumentos[] = new String[] { String.valueOf(id_categoria),
 				String.valueOf(id_nivel) };
 
-		cursor = getDb().query(TABELA, coluna, where, argumentos, null, null,
+		cursor = getDb().query(CategoriaNivel.TABELA, coluna, where, argumentos, null, null,
 				null);
 
 		cursor.moveToFirst();
 
-		cat_niv.setId_cat_niv(cursor.getInt(cursor.getColumnIndex(COL_ID)));
+		catNiv.setIdCatNiv(cursor.getInt(cursor.getColumnIndex(CategoriaNivel.COL_ID)));
 
 		cursor.close();
 
-		return cat_niv.getId_cat_niv();
+		return catNiv.getIdCatNiv();
 	}
 
 	// Recuperar lista dos status por categoria
 	public List<Integer> getListaStatusNivel(int idCategoria) throws Exception {
 
-		String[] coluna = new String[] { COL_STATUS_NIVEL };
+		String[] coluna = new String[] { CategoriaNivel.COL_STATUS_NIVEL };
 
-		String where = COL_ID_CATEGORIA + " = ? ";
+		String where = CategoriaNivel.COL_ID_CATEGORIA + " = ? ";
 
-		String orderBy = COL_ID_NIVEL;
+		String orderBy = CategoriaNivel.COL_ID_NIVEL;
 
 		String argumentos[] = new String[] { String.valueOf(idCategoria) };
 
-		Cursor cursor = getDb().query(TABELA, coluna, where, argumentos, null,
+		Cursor cursor = getDb().query(CategoriaNivel.TABELA, coluna, where, argumentos, null,
 				null, orderBy);
 
 		List<Integer> listaStatus = new ArrayList<Integer>();
@@ -127,7 +121,7 @@ public class CategoriaNivelDao {
 			while (cursor.moveToNext()) {
 
 				int status = cursor.getInt(cursor
-						.getColumnIndex(COL_STATUS_NIVEL));
+						.getColumnIndex(CategoriaNivel.COL_STATUS_NIVEL));
 				listaStatus.add(status);
 
 			}

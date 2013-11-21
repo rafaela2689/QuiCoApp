@@ -1,31 +1,33 @@
-package com.android.quiz.view;
+package com.android.quiz.view.impl;
 
-import com.android.quiz.R;
-import com.android.quiz.R.id;
-import com.android.quiz.R.layout;
-import com.android.quiz.enumerado.CategoriaEnum;
-
-import android.app.Activity;
+import roboguice.activity.RoboActivity;
+import roboguice.inject.ContentView;
+import roboguice.inject.InjectView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageButton;
 
-public class CategoriaActivity extends Activity implements OnClickListener {
-	
-	public static final String CATEGORIA = "categoria";
+import com.android.quiz.R;
+import com.android.quiz.enumerado.CategoriaEnum;
+import com.android.quiz.util.Constantes;
 
-	ImageButton btnSelecao, btnJogadores, btnCidadeSede;
+@ContentView(R.layout.categoria)
+public class CategoriaActivity extends RoboActivity implements OnClickListener {
+
+	@InjectView(R.id.imgbtnSelecao)
+	private ImageButton btnSelecao;
+	
+	@InjectView(R.id.imgbtnJogador)
+	private ImageButton btnJogadores;
+	
+	@InjectView(R.id.imgbtnCidadeSede)
+	private ImageButton btnCidadeSede;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.categoria);
-
-		btnSelecao = (ImageButton) findViewById(R.id.imgbtnSelecao);
-		btnJogadores = (ImageButton) findViewById(R.id.imgbtnJogador);
-		btnCidadeSede = (ImageButton) findViewById(R.id.imgbtnCidadeSede);
 
 		btnSelecao.setOnClickListener(this);
 		btnJogadores.setOnClickListener(this);
@@ -48,9 +50,9 @@ public class CategoriaActivity extends Activity implements OnClickListener {
 	
 	public void chamarTelaNivel(CategoriaEnum cat) {
 		Intent catCidadeSede = new Intent(this, NivelActivity.class);
-		Bundle params3 = new Bundle();
-		params3.putInt(CATEGORIA, cat.getCategoria());
-		catCidadeSede.putExtras(params3);
+		Bundle params = new Bundle();
+		params.putInt(Constantes.CATEGORIA, cat.getCategoria());
+		catCidadeSede.putExtras(params);
 		startActivity(catCidadeSede);
 		finish();
 	}

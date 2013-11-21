@@ -1,6 +1,8 @@
-package com.android.quiz.view;
+package com.android.quiz.view.impl;
 
-import android.app.Activity;
+import roboguice.activity.RoboActivity;
+import roboguice.inject.ContentView;
+import roboguice.inject.InjectView;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -10,32 +12,31 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 
 import com.android.quiz.R;
-import com.android.quiz.R.id;
-import com.android.quiz.R.layout;
 import com.android.quiz.db.DBHelper;
 
-public class IniciarActivity extends Activity implements OnClickListener {
+@ContentView(R.layout.iniciar)
+public class IniciarActivity extends RoboActivity implements OnClickListener {
 
-	Button btnAjuda, btnSobre, btnIniciar;
+	@InjectView(R.id.btnAjuda)
+	private Button btnAjuda;
+	
+	@InjectView(R.id.btnSobre)
+	private Button btnSobre; 
+	
+	@InjectView(R.id.btnIniciar)
+	private Button btnIniciar;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.iniciar);
-
-		btnIniciar = (Button) findViewById(R.id.btnIniciar);
-		btnAjuda = (Button) findViewById(R.id.btnAjuda);
-		btnSobre = (Button) findViewById(R.id.btnSobre);
 
 		btnIniciar.setOnClickListener(this);
 		btnAjuda.setOnClickListener(this);
 		btnSobre.setOnClickListener(this);
-
 	}
 
 	@Override
 	public void onClick(View v) {
-		
 		switch (v.getId()) {
 		case R.id.btnIniciar:
 			carregaTelaIniciar();
@@ -52,8 +53,7 @@ public class IniciarActivity extends Activity implements OnClickListener {
 
 	// chama a tela Iniciar
 	public void carregaTelaIniciar() {
-		Intent telaIniciar = new Intent(IniciarActivity.this,
-				CategoriaActivity.class);
+		Intent telaIniciar = new Intent(IniciarActivity.this, CategoriaActivity.class);
 		startActivity(telaIniciar);
 	}
 

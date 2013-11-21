@@ -2,34 +2,40 @@ package com.android.quiz.modelo;
 
 public class CategoriaNivel {
 	
-	private int id_cat_niv;
-	private int id_cat;
-	private int id_niv;
-	private int status_nivel;
+	public static final String TABELA = "categoria_nivel";
+	public static final String COL_ID_CATEGORIA = "id_categoria";
+	public static final String COL_ID_NIVEL = "id_nivel";
+	public static final String COL_STATUS_NIVEL = "status_nivel";
+	public static final String COL_ID = "_id";
 	
-	public int getId_cat_niv() {
-		return id_cat_niv;
+	private int idCatNiv;
+	private int idCat;
+	private int idNiv;
+	private int statusNivel;
+	
+	public int getIdCatNiv() {
+		return idCatNiv;
 	}
-	public void setId_cat_niv(int id_cat_niv) {
-		this.id_cat_niv = id_cat_niv;
+	public void setIdCatNiv(int idCatNiv) {
+		this.idCatNiv = idCatNiv;
 	}
-	public int getId_cat() {
-		return id_cat;
+	public int getIdCat() {
+		return idCat;
 	}
-	public void setId_cat(int id_cat) {
-		this.id_cat = id_cat;
+	public void setIdCat(int idCat) {
+		this.idCat = idCat;
 	}
-	public int getId_niv() {
-		return id_niv;
+	public int getIdNiv() {
+		return idNiv;
 	}
-	public void setId_niv(int id_niv) {
-		this.id_niv = id_niv;
+	public void setIdNiv(int idNiv) {
+		this.idNiv = idNiv;
 	}
-	public int getStatus_nivel() {
-		return status_nivel;
+	public int getStatusNivel() {
+		return statusNivel;
 	}
-	public void setStatus_nivel(int status_nivel) {
-		this.status_nivel = status_nivel;
+	public void setStatusNivel(int statusNivel) {
+		this.statusNivel = statusNivel;
 	}
 	
 

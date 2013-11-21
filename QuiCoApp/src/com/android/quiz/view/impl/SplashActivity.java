@@ -1,19 +1,19 @@
-package com.android.quiz.view;
+package com.android.quiz.view.impl;
 
-import com.android.quiz.R;
-import com.android.quiz.R.layout;
-
-import android.app.Activity;
+import roboguice.activity.RoboActivity;
+import roboguice.inject.ContentView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 
-public class SplashActivity extends Activity implements Runnable {
+import com.android.quiz.R;
+
+@ContentView(R.layout.splash)
+public class SplashActivity extends RoboActivity implements Runnable {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.splash);
 
 		Handler h = new Handler();
 		h.postDelayed(this, 3000);// aqui é definido o delay do handler em

@@ -11,17 +11,6 @@ import com.android.quiz.modelo.Questao;
 
 public class QuestaoDao {
 
-	public static final String TAB_QUESTAO = "questao";
-	public static final String COL_ID = "_id";
-	public static final String COL_QUESTAO = "t_questao";
-	public static final String COL_OPCAO_1 = "opcao1";
-	public static final String COL_OPCAO_2 = "opcao2";
-	public static final String COL_OPCAO_3 = "opcao3";
-	public static final String COL_OPCAO_4 = "opcao4";
-	public static final String COL_RESPOSTA = "resposta";
-	public static final String COL_ID_CATEGORIA_NIVEL = "id_cat_nivel";
-	
-	
 	private SQLiteDatabase getDb() {
 		return DBHelper.getDataBase();
 	}
@@ -30,16 +19,16 @@ public class QuestaoDao {
 	public List<Questao> getQuestionSet(int idCatNiv, int numQ)
 			throws Exception {
 
-		String[] colunas = new String[] { COL_QUESTAO, COL_OPCAO_1, COL_OPCAO_2,
-											COL_OPCAO_3, COL_OPCAO_4, COL_RESPOSTA };
-		String where = COL_ID_CATEGORIA_NIVEL + " = ?";
+		String[] colunas = new String[] { Questao.COL_QUESTAO, Questao.COL_OPCAO_1, Questao.COL_OPCAO_2,
+				Questao.COL_OPCAO_3, Questao.COL_OPCAO_4, Questao.COL_RESPOSTA };
+		String where = Questao.COL_ID_CATEGORIA_NIVEL + " = ?";
 
 		String orderBy = "RANDOM() LIMIT ?";
 
 		String argumentos[] = new String[] { String.valueOf(idCatNiv),
 				String.valueOf(numQ) };
 
-		Cursor cursor = getDb().query(TAB_QUESTAO, colunas,
+		Cursor cursor = getDb().query(Questao.TAB_QUESTAO, colunas,
 				where, argumentos, null, null, orderBy);
 
 		List<Questao> questionSet = new ArrayList<Questao>();

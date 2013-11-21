@@ -1,10 +1,17 @@
 package com.android.quiz.modelo;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
 public class Questao {
+	
+	public static final String TAB_QUESTAO = "questao";
+	public static final String COL_ID = "_id";
+	public static final String COL_QUESTAO = "t_questao";
+	public static final String COL_OPCAO_1 = "opcao1";
+	public static final String COL_OPCAO_2 = "opcao2";
+	public static final String COL_OPCAO_3 = "opcao3";
+	public static final String COL_OPCAO_4 = "opcao4";
+	public static final String COL_RESPOSTA = "resposta";
+	public static final String COL_ID_CATEGORIA_NIVEL = "id_cat_nivel";
 	
 	private int id;
 	private String questao;
@@ -13,16 +20,16 @@ public class Questao {
 	private String opcao3;
 	private String opcao4;
 	private String resposta;
-	private int id_cat;
-	private int id_niv;
+	private int idCcat;
+	private int idNiv;
 	
 	public Questao(){
 		
 	}
 	
 	public Questao(int id, String questao, String opcao1, String opcao2,
-			String opcao3, String opcao4, String resposta, int id_cat,
-			int id_niv) {
+			String opcao3, String opcao4, String resposta, int idCat,
+			int idNiv) {
 		super();
 		this.id = id;
 		this.questao = questao;
@@ -31,8 +38,8 @@ public class Questao {
 		this.opcao3 = opcao3;
 		this.opcao4 = opcao4;
 		this.resposta = resposta;
-		this.id_cat = id_cat;
-		this.id_niv = id_niv;
+		this.idCcat = idCat;
+		this.idNiv = idNiv;
 	}
 	
 	public int getId() {
@@ -41,17 +48,17 @@ public class Questao {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public int getId_cat() {
-		return id_cat;
+	public int getIdCat() {
+		return idCcat;
 	}
-	public void setId_cat(int id_cat) {
-		this.id_cat = id_cat;
+	public void setIdCat(int idCat) {
+		this.idCcat = idCat;
 	}
-	public int getId_niv() {
-		return id_niv;
+	public int getIdNiv() {
+		return idNiv;
 	}
-	public void setId_niv(int id_niv) {
-		this.id_niv = id_niv;
+	public void setId_niv(int idNiv) {
+		this.idNiv = idNiv;
 	}
 	
 	public String getQuestao() {
@@ -89,17 +96,6 @@ public class Questao {
 	}
 	public void setResposta(String resposta) {
 		this.resposta = resposta;
-	}
-	
-	public List<String> getQuestaoOpcoes(){
-		List<String> shuffle = new ArrayList<String>();
-		shuffle.add(resposta);
-		shuffle.add(opcao1);
-		shuffle.add(opcao2);
-		shuffle.add(opcao3);
-		shuffle.add(opcao4);
-		Collections.shuffle(shuffle);
-		return shuffle;
 	}
 
 }
