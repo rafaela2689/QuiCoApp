@@ -12,9 +12,9 @@
     <string name="bt_iniciar">Iniciar</string>
     <string name="bt_ajuda">Ajuda</string>
     <string name="bt_sobre">Sobre</string>
-    <string name="tv_ajuda1">1. Selecione uma categoria;</string>
-    <string name="tv_ajuda2">2. Selecione um nível desbloqueado;</string>
-    <string name="tv_ajuda3"> 3. Clique na resposta que acha certa, o próximo nível será desbloqueado, somente após acertar dez perguntas de um mesmo nível.</string>
+    <string name="tv_ajuda1">Selecione uma categoria;</string>
+    <string name="tv_ajuda2">Selecione um nível desbloqueado;</string>
+    <string name="tv_ajuda3">Clique na resposta que acha certa, o próximo nível será desbloqueado, somente após acertar dez perguntas de um mesmo nível.</string>
     <string name="tv_instrucoes">Instruções:</string>
     <string name="tv_sobre">Copa Quiz Versão 1.0</string>
     <string name="tv_sobre_team">Desenvolvido por:</string>

@@ -4,12 +4,15 @@ import roboguice.activity.RoboActivity;
 import roboguice.inject.ContentView;
 import roboguice.inject.InjectView;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.Button;
+import android.widget.ImageButton;
 
 import com.android.quiz.R;
 import com.android.quiz.db.DBHelper;
@@ -17,15 +20,15 @@ import com.android.quiz.db.DBHelper;
 @ContentView(R.layout.iniciar)
 public class IniciarActivity extends RoboActivity implements OnClickListener {
 
+	@InjectView(R.id.btnIniciar)
+	private ImageButton btnIniciar;
+	
 	@InjectView(R.id.btnAjuda)
-	private Button btnAjuda;
+	private ImageButton btnAjuda;
 	
 	@InjectView(R.id.btnSobre)
-	private Button btnSobre; 
+	private ImageButton btnSobre; 
 	
-	@InjectView(R.id.btnIniciar)
-	private Button btnIniciar;
-
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -33,6 +36,18 @@ public class IniciarActivity extends RoboActivity implements OnClickListener {
 		btnIniciar.setOnClickListener(this);
 		btnAjuda.setOnClickListener(this);
 		btnSobre.setOnClickListener(this);
+		
+		if (isSmartPhone(getApplicationContext()))
+			setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+		else
+			setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+
+	}
+
+	public static boolean isSmartPhone(Context context) {
+		final int screenLayout = context.getResources().getConfiguration().screenLayout;
+		return ((screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) < Configuration.SCREENLAYOUT_SIZE_LARGE);
+	
 	}
 
 	@Override

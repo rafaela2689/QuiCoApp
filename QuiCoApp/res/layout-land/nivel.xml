@@ -1,0 +1,100 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg"
+    android:orientation="vertical"
+    tools:context=".NivelActivity" >
+
+    <ImageButton
+        android:id="@+id/imgBtnNivel2"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_alignTop="@+id/imgBtnNivel1"
+        android:layout_centerHorizontal="true"
+        android:layout_weight="1"
+        android:adjustViewBounds="true"
+        android:background="@drawable/bloquear_desbloquear_nivel"
+        android:padding="10dp"
+        android:scaleType="fitCenter" />
+
+    <ImageButton
+        android:id="@+id/imgBtnNivel1"
+        android:layout_width="85dp"
+        android:layout_height="85dp"
+        android:layout_alignTop="@+id/imgBtnNivel3"
+        android:layout_weight="1"
+        android:adjustViewBounds="true"
+        android:background="@drawable/bloquear_desbloquear_nivel"/>
+        <!-- android:src="@drawable/nivel_bola" /> -->
+
+    <ImageButton
+        android:id="@+id/imgBtnNivel3"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="36dp"
+        android:layout_toRightOf="@+id/imgBtnNivel1"
+        android:layout_weight="1"
+        android:adjustViewBounds="true"
+        android:background="@drawable/bloquear_desbloquear_nivel"
+        android:padding="10dp"
+        android:scaleType="fitCenter" />
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="27dp" >
+
+        <ImageButton
+            android:id="@+id/imgBtnNivel4"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="62dp"
+            android:layout_weight="1"
+            android:adjustViewBounds="true"
+            android:background="@drawable/bloquear_desbloquear_nivel"/>
+            <!--  android:src="@drawable/nivel_bola" />-->
+
+        <ImageButton
+            android:id="@+id/imgBtnNivel5"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginRight="49dp"
+            android:layout_toLeftOf="@+id/imgBtnNivel6"
+            android:layout_weight="1"
+            android:adjustViewBounds="true"
+            android:background="@drawable/bloquear_desbloquear_nivel"
+            android:padding="10dp"
+            android:scaleType="fitCenter" />
+
+        <ImageButton
+            android:id="@+id/imgBtnNivel6"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_weight="1"
+            android:adjustViewBounds="true"
+            android:background="@drawable/bloquear_desbloquear_nivel"
+            android:padding="10dp"
+            android:scaleType="fitCenter" />
+
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/imgBtnNivel4"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="27dp"
+            android:src="@drawable/num_1" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

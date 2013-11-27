@@ -3,7 +3,10 @@ package com.android.quiz.view.impl;
 import roboguice.activity.RoboActivity;
 import roboguice.inject.ContentView;
 import roboguice.inject.InjectView;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -32,6 +35,18 @@ public class CategoriaActivity extends RoboActivity implements OnClickListener {
 		btnSelecao.setOnClickListener(this);
 		btnJogadores.setOnClickListener(this);
 		btnCidadeSede.setOnClickListener(this);
+		
+		if (isSmartPhone(getApplicationContext()))
+			setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+		else
+			setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+
+	}
+
+	public static boolean isSmartPhone(Context context) {
+		final int screenLayout = context.getResources().getConfiguration().screenLayout;
+		return ((screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) < Configuration.SCREENLAYOUT_SIZE_LARGE);
+	
 	}
 
 	public void onClick(View v) {

@@ -9,7 +9,7 @@
     android:background="#3CB371"
     tools:context=".IniciarActivity" >
 
-    <Button
+    <ImageButton
         android:id="@+id/btnAjuda"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -17,10 +17,9 @@
         android:layout_alignRight="@+id/tituloApp"
         android:layout_below="@+id/btnIniciar"
         android:layout_marginTop="25dp"
-        android:background="@drawable/shapebutton"
-        android:text="@string/bt_ajuda" />
+       	android:src="@drawable/bt_instrucoes" />
 
-    <Button
+    <ImageButton
         android:id="@+id/btnSobre"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -28,19 +27,17 @@
         android:layout_alignRight="@+id/btnAjuda"
         android:layout_below="@+id/btnAjuda"
         android:layout_marginTop="31dp"
-        android:background="@drawable/shapebutton"
-        android:text="@string/bt_sobre" />
+       	android:src="@drawable/bt_sobre" />
 
-    <Button
+    <ImageButton
         android:id="@+id/btnIniciar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="180dp"
+        android:layout_height="80dp"
         android:layout_alignLeft="@+id/btnAjuda"
         android:layout_alignRight="@+id/btnAjuda"
         android:layout_below="@+id/tituloApp"
         android:layout_marginTop="32dp"
-        android:background="@drawable/shapebutton"
-        android:text="@string/bt_iniciar" />
+       	android:src="@drawable/bt_jogar" />
 
     <TextView
         android:id="@+id/tituloApp"

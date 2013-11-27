@@ -11,11 +11,11 @@
     <application
         android:name="com.android.quiz.QuizCopaApplication"
         android:allowBackup="true"
-        android:icon="@drawable/ic_launcher"
+        android:icon="@drawable/icone"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.android.quiz.view.SplashActivity"
+            android:name="com.android.quiz.view.impl.SplashActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,7 +23,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.android.quiz.view.IniciarActivity"
+            android:name="com.android.quiz.view.impl.IniciarActivity"
             android:label="@string/app_name"
             android:launchMode="singleInstance" >
             <intent-filter>
@@ -32,23 +32,23 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.android.quiz.view.CategoriaActivity"
+            android:name="com.android.quiz.view.impl.CategoriaActivity"
             android:label="@string/title_activity_categoria" >
         </activity>
         <activity
-            android:name="com.android.quiz.view.NivelActivity"
+            android:name="com.android.quiz.view.impl.NivelActivity"
             android:label="@string/title_activity_nivel" >
         </activity>
         <activity
-            android:name="com.android.quiz.view.QuestaoActivity"
+            android:name="com.android.quiz.view.impl.QuestaoActivity"
             android:label="@string/title_activity_questao" >
         </activity>
         <activity
-            android:name="com.android.quiz.view.SobreActivity"
+            android:name="com.android.quiz.view.impl.SobreActivity"
             android:label="@string/title_activity_sobre" >
         </activity>
         <activity
-            android:name="com.android.quiz.view.AjudaActivity"
+            android:name="com.android.quiz.view.impl.AjudaActivity"
             android:label="@string/title_activity_ajuda" >
         </activity>
         

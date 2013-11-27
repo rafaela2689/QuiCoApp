@@ -1,0 +1,36 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_splash_menu"
+    tools:context=".IniciarActivity" >
+
+    <ImageButton
+        android:id="@+id/btnIniciar"
+        android:layout_width="205dp"
+        android:layout_height="75dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="65dp"
+        android:background="@drawable/state_bt_jogar" />
+
+    <ImageButton
+        android:id="@+id/btnAjuda"
+        android:layout_width="205dp"
+        android:layout_height="40dp"
+        android:layout_alignLeft="@+id/btnIniciar"
+        android:layout_below="@+id/btnIniciar"
+        android:layout_marginTop="6dp"
+        android:background="@drawable/states_bt_instrucoes" />
+
+    <ImageButton
+        android:id="@+id/btnSobre"
+        android:layout_width="205dp"
+        android:layout_height="40dp"
+        android:layout_alignLeft="@+id/btnAjuda"
+        android:layout_below="@+id/btnAjuda"
+        android:layout_marginTop="6dp"
+        android:background="@drawable/state_bt_sobre" />
+
+</RelativeLayout>
