@@ -1,4 +1,4 @@
-package com.android.quiz.presenter;
+package com.android.quiz.presenter.impl;
 
 import java.util.List;
 
@@ -7,25 +7,28 @@ import android.view.View;
 import android.view.View.OnClickListener;
 
 import com.android.quiz.R;
-import com.android.quiz.dao.CategoriaNivelDao;
-import com.android.quiz.dao.QuestaoDao;
+import com.android.quiz.dao.ICategoriaNivelDao;
+import com.android.quiz.dao.IQuestaoDao;
+import com.android.quiz.dao.impl.QuestaoDao;
 import com.android.quiz.modelo.Questao;
+import com.android.quiz.presenter.IQuestaoPresenter;
 import com.android.quiz.util.Constantes;
 import com.android.quiz.view.IQuestaoView;
+import com.google.inject.Inject;
 
-public class QuestaoPresenter implements OnClickListener{
+public class QuestaoPresenter implements OnClickListener, IQuestaoPresenter{
 
 	private Questao questaoAtual;
 	
 	private List<Questao> qLista;
 	
-	private QuestaoDao questaoDao;
+	@Inject
+	private IQuestaoDao questaoDao;
 	
-	private CategoriaNivelDao categoriaNivelDao;
+	@Inject
+	private ICategoriaNivelDao categoriaNivelDao;
 	
 	private IQuestaoView questaoView;
-	
-	private Context context;
 	
 	private int contador = 1;
 	
@@ -41,11 +44,13 @@ public class QuestaoPresenter implements OnClickListener{
 	
 	private int idCatNiv;
 	
-	public QuestaoPresenter(IQuestaoView questaoView, Context context, int idCategoria, int idNivel) {
+	@Override
+	public void inicializar(IQuestaoView questaoView, Context context,
+			int idCategoria, int idNivel) {
 		this.questaoView = questaoView;
-		this.context = context;
 		this.idCategoria = idCategoria;
 		this.idNivel = idNivel;
+		
 	}
 	
 	// consulta questões no banco de dados
@@ -64,12 +69,12 @@ public class QuestaoPresenter implements OnClickListener{
 		
 		public int consultaIdCategoriaNivel(){
 			
-			categoriaNivelDao = new CategoriaNivelDao (context);
-			
 			return categoriaNivelDao.consultaIdCategoriaNivel(idCategoria, idNivel);
 		}
 		
-		public void setQuestions() {
+	
+		@Override
+		public void loadQuestions() {
 			questaoAtual = new Questao();
 
 			questaoAtual = qLista.get(indiceLista);
@@ -91,8 +96,9 @@ public class QuestaoPresenter implements OnClickListener{
 
 			// incrementa o índice da lista
 			indiceLista++;
+			
 		}
-		
+
 		/*
 		 * método para verificar resposta certa e passar para a próxima e mostrar
 		 * msg se perder ou responder todas as perguntas corretamente
@@ -101,7 +107,7 @@ public class QuestaoPresenter implements OnClickListener{
 			if (questaoAtual.getResposta().equals(resposta)) {
 				if (indiceLista < Constantes.NUM_QUESTOES) {
 					questaoAtual = qLista.get(indiceLista);
-					setQuestions();
+					loadQuestions();
 
 				} else {
 					contador = 1;

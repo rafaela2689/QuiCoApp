@@ -1,4 +1,4 @@
-package com.android.quiz.dao;
+package com.android.quiz.dao.impl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,17 +8,17 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.android.quiz.dao.ICategoriaNivelDao;
 import com.android.quiz.db.DBHelper;
 import com.android.quiz.modelo.CategoriaNivel;
+import com.google.inject.Inject;
 
-public class CategoriaNivelDao {
+public class CategoriaNivelDao implements ICategoriaNivelDao{
 
+	@Inject
 	private DBHelper helper;
 	private SQLiteDatabase db;
 
-	public CategoriaNivelDao(Context contexto) {
-		helper = DBHelper.createInstance(contexto.getApplicationContext());
-	}
 
 	private SQLiteDatabase getDb() {
 		if (db == null) {

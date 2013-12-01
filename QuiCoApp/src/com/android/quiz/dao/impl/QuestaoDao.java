@@ -1,4 +1,4 @@
-package com.android.quiz.dao;
+package com.android.quiz.dao.impl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,13 +6,23 @@ import java.util.List;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.android.quiz.dao.IQuestaoDao;
 import com.android.quiz.db.DBHelper;
 import com.android.quiz.modelo.Questao;
+import com.google.inject.Inject;
 
-public class QuestaoDao {
+public class QuestaoDao implements IQuestaoDao {
 
+	@Inject
+	private DBHelper helper;
+	
+	private SQLiteDatabase db;
+	
 	private SQLiteDatabase getDb() {
-		return DBHelper.getDataBase();
+		if (db == null) {
+			db = helper.getWritableDatabase();
+		}
+		return db;
 	}
 
 	// Recuperar as questões do banco de dados

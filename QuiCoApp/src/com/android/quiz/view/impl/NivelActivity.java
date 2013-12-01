@@ -17,9 +17,10 @@ import android.widget.ImageButton;
 
 import com.android.quiz.R;
 import com.android.quiz.enumerado.NivelEnum;
-import com.android.quiz.presenter.NivelPresenter;
+import com.android.quiz.presenter.INivelPresenter;
 import com.android.quiz.util.Constantes;
 import com.android.quiz.view.INivelView;
+import com.google.inject.Inject;
 
 @ContentView(R.layout.nivel)
 public class NivelActivity extends RoboActivity implements OnClickListener, INivelView {
@@ -45,6 +46,9 @@ public class NivelActivity extends RoboActivity implements OnClickListener, INiv
 	private int idCategoria;
 
 	List<ImageButton> botoes = new ArrayList<ImageButton>();
+	
+	@Inject
+	private INivelPresenter presenter;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -71,7 +75,7 @@ public class NivelActivity extends RoboActivity implements OnClickListener, INiv
 		botoes.add(btnNivel5);
 		botoes.add(btnNivel6);
 
-		NivelPresenter presenter = new NivelPresenter(this, getApplicationContext());
+		presenter.setNivelView(this);
 		presenter.verificaStatusCategoriaNivel(idCategoria);
 		
 		if (isSmartPhone(getApplicationContext()))

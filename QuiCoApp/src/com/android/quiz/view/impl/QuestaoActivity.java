@@ -9,7 +9,6 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
@@ -17,9 +16,11 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.android.quiz.R;
-import com.android.quiz.presenter.QuestaoPresenter;
+import com.android.quiz.presenter.IQuestaoPresenter;
+import com.android.quiz.presenter.impl.QuestaoPresenter;
 import com.android.quiz.util.Constantes;
 import com.android.quiz.view.IQuestaoView;
+import com.google.inject.Inject;
 
 @ContentView(R.layout.questao)
 public class QuestaoActivity extends RoboActivity implements IQuestaoView {
@@ -27,7 +28,11 @@ public class QuestaoActivity extends RoboActivity implements IQuestaoView {
 	private int nivelAtual;
 	private int idCategoria;
 	
-	QuestaoPresenter presenter;
+	@Inject
+	IQuestaoPresenter presenter; 
+	
+	@Inject
+	QuestaoPresenter presen;
 	
 	@InjectView(R.id.txtQuestao)
 	private TextView txQuestao;
@@ -59,19 +64,18 @@ public class QuestaoActivity extends RoboActivity implements IQuestaoView {
 			nivelAtual = params.getInt(Constantes.NIVEL);
 		}
 
-		presenter = new QuestaoPresenter(this, getApplicationContext(), idCategoria, nivelAtual);
-
+		presenter.inicializar(this, getApplicationContext(), idCategoria, nivelAtual);
 		// consulta as questoes no banco de dados
 		presenter.consultaQuestoesBD();
 
 		// seta o primeiro registro no objeto da classe questao
-		presenter.setQuestions();
+		presenter.loadQuestions();
 
 		// método para evento click do botao
-		btnOpcao1.setOnClickListener(presenter);
-		btnOpcao2.setOnClickListener(presenter);
-		btnOpcao3.setOnClickListener(presenter);
-		btnOpcao4.setOnClickListener(presenter);
+		btnOpcao1.setOnClickListener(presen);
+		btnOpcao2.setOnClickListener(presen);
+		btnOpcao3.setOnClickListener(presen);
+		btnOpcao4.setOnClickListener(presen);
 
 		if (isSmartPhone(getApplicationContext()))
 			setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
@@ -125,7 +129,7 @@ public class QuestaoActivity extends RoboActivity implements IQuestaoView {
 					presenter.setIndiceLista(0);
 					presenter.consultaQuestoesBD();
 					
-					presenter.setQuestions();
+					presenter.loadQuestions();
 					dialog.dismiss();
 
 				} else {
@@ -200,7 +204,7 @@ public class QuestaoActivity extends RoboActivity implements IQuestaoView {
 				// TODO Auto-generated method stub
 				presenter.setIndiceLista(0);
 				presenter.consultaQuestoesBD();
-				presenter.setQuestions();
+				presenter.loadQuestions();
 				dialog.dismiss();
 
 			}

@@ -11,10 +11,14 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import com.google.inject.Inject;
+import com.google.inject.Singleton;
+
+@Singleton
 public class DBHelper extends SQLiteOpenHelper {
 
-
-	private static DBHelper sInstance;// variavel para única instancia da base de dados
+	// variavel para única instancia da base de dados
+	private static DBHelper sInstance;
 
 	//The Android's default system path of your application database.
 	private static String DB_PATH = "/data/data/com.android.quiz/databases/";
@@ -23,6 +27,7 @@ public class DBHelper extends SQLiteOpenHelper {
 	private static final int DATABASE_VERSAO = 1;
 	private final Context dbContexto;
 
+	@Inject
 	public DBHelper(Context context) {
 		super(context, DB_NAME, null, DATABASE_VERSAO);
 		this.dbContexto = context;

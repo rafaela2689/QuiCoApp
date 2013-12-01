@@ -1,27 +1,21 @@
-package com.android.quiz.presenter;
+package com.android.quiz.presenter.impl;
 
 import java.util.List;
 
-import android.content.Context;
-
-import com.android.quiz.dao.CategoriaNivelDao;
+import com.android.quiz.dao.ICategoriaNivelDao;
+import com.android.quiz.presenter.INivelPresenter;
 import com.android.quiz.view.INivelView;
+import com.google.inject.Inject;
 
-public class NivelPresenter {
+public class NivelPresenter implements INivelPresenter {
 
-	private CategoriaNivelDao dao;
+	@Inject
+	private ICategoriaNivelDao dao;
 	
 	private INivelView nivelView;
 	
-	private Context context;
-	
-	public NivelPresenter(INivelView nivelView, Context context) {
-		this.nivelView = nivelView;
-		this.context = context;
-		
-	}
-	
 	// verifica o status do nivel para cada categoria
+	@Override
 	public void verificaStatusCategoriaNivel(int categoria) {
 		for (int i = 1; i <= 6; i++) {
 			verificaStatusNivel(categoria, i);
@@ -29,10 +23,14 @@ public class NivelPresenter {
 		}
 	}
 	
+	public void setNivelView(INivelView nivelView) {
+		this.nivelView = nivelView;
+		
+	}
+	
 	// verifica o status do nível para habilitar ou desabilitar os botões
 	private void verificaStatusNivel(int categoria, int nivel) {
 
-		dao = new CategoriaNivelDao(context);
 		List<Integer> listStatus = null;
 		int cont = 0;
 		try {
@@ -50,5 +48,7 @@ public class NivelPresenter {
 			cont++;
 		}
 	}
+
+	
 
 }
