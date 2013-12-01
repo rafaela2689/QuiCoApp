@@ -8,6 +8,6 @@ public class Constantes {
 	
 	public static final String CATEGORIA_NIVEL = "categoria_nivel";
 	
-	public static final int NUM_QUESTOES = 5;
+	public static final int NUM_QUESTOES = 10;
 
 }

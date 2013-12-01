@@ -17,7 +17,7 @@ public class AjudaActivity extends RoboActivity {
 		super.onCreate(savedInstanceState);
 		
 		if (isSmartPhone(getApplicationContext()))
-			setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+			setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 		else
 			setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 

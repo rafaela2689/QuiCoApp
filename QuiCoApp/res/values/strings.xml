@@ -31,7 +31,7 @@
     <string name="bt_sair">Sair</string>
     <string name="msgPerdeu">Você perdeu!</string>
     <string name="bt_jogarNovamente">Jogar Novamente</string>
-    <string name="txtPerguntaSair">Você pressionou o botão sair!</string>
+    <string name="txtPerguntaSair">Atenção! Você sairá do jogo!</string>
     <string name="btnContinuar">Continuar</string>
     <string name="btnTerminar">Terminar</string>
     <string name="title_activity_splash">SplashActivity</string>

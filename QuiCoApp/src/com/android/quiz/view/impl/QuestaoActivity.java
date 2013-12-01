@@ -9,8 +9,10 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -72,7 +74,7 @@ public class QuestaoActivity extends RoboActivity implements IQuestaoView {
 		btnOpcao4.setOnClickListener(presenter);
 
 		if (isSmartPhone(getApplicationContext()))
-			setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+			setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 		else
 			setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 
@@ -90,16 +92,15 @@ public class QuestaoActivity extends RoboActivity implements IQuestaoView {
 
 		final Dialog dialog = new Dialog(this);
 
+		dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		dialog.setContentView(R.layout.resposta_certa);
-
-		dialog.setTitle("Ganhou");
 		dialog.setCancelable(false);
 
 		final Button btnProxNivel = (Button) dialog
 				.findViewById(R.id.btnProximoNivel);
 		final Button btnCategoria = (Button) dialog
 				.findViewById(R.id.btnTelaCategoria);
-		final Button btnSair = (Button) dialog.findViewById(R.id.btnSair);
+		final Button btnNiveis = (Button) dialog.findViewById(R.id.btnNiveis);
 
 		// clicar no botão categoria
 		btnCategoria.setOnClickListener(new OnClickListener() {
@@ -107,10 +108,7 @@ public class QuestaoActivity extends RoboActivity implements IQuestaoView {
 			@Override
 			public void onClick(View v) {
 
-				Intent cat = new Intent(QuestaoActivity.this,
-						CategoriaActivity.class);
-				startActivity(cat);
-				finish();
+				chamarTelaCategoria();
 				dialog.dismiss();
 
 			}
@@ -132,10 +130,7 @@ public class QuestaoActivity extends RoboActivity implements IQuestaoView {
 
 				} else {
 					// senão chama a tela de categoria
-					Intent proxCategoria = new Intent(QuestaoActivity.this,
-							CategoriaActivity.class);
-					startActivity(proxCategoria);
-					finish();
+					chamarTelaCategoria();
 					dialog.dismiss();
 				}
 
@@ -143,14 +138,11 @@ public class QuestaoActivity extends RoboActivity implements IQuestaoView {
 		});
 
 		// clicar no botão sair
-		btnSair.setOnClickListener(new OnClickListener() {
+		btnNiveis.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
-				Intent inicio = new Intent(QuestaoActivity.this,
-						IniciarActivity.class);
-				startActivity(inicio);
-				finish();
+				chamarTelaNiveis();
 				dialog.dismiss();
 
 			}
@@ -164,27 +156,25 @@ public class QuestaoActivity extends RoboActivity implements IQuestaoView {
 	public void mostrarMsgPerdeu() {
 
 		final Dialog dialog = new Dialog(this);
+		
+		dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
 
 		dialog.setContentView(R.layout.resposta_errada);
-		dialog.setTitle("Perdeu");
 		dialog.setCancelable(false);
 
-		final Button btnSair = (Button) dialog.findViewById(R.id.btnSair);
+		final Button btnNivel = (Button) dialog.findViewById(R.id.btnSair);
 		final Button btnCategoria = (Button) dialog
 				.findViewById(R.id.btnTelaCategoria2);
 		final Button btnNovoJogo = (Button) dialog
 				.findViewById(R.id.btnJogarNovamente);
 
 		// clicar no botão sair
-		btnSair.setOnClickListener(new OnClickListener() {
+		btnNivel.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
 
-				Intent inicio = new Intent(QuestaoActivity.this,
-						IniciarActivity.class);
-				startActivity(inicio);
-				finish();
+				chamarTelaNiveis();
 				dialog.dismiss();
 
 			}
@@ -196,10 +186,7 @@ public class QuestaoActivity extends RoboActivity implements IQuestaoView {
 			@Override
 			public void onClick(View v) {
 
-				Intent cat = new Intent(QuestaoActivity.this,
-						CategoriaActivity.class);
-				startActivity(cat);
-				finish();
+				chamarTelaCategoria();
 				dialog.dismiss();
 
 			}
@@ -250,10 +237,7 @@ public class QuestaoActivity extends RoboActivity implements IQuestaoView {
 
 			@Override
 			public void onClick(View v) {
-				Intent i = new Intent(QuestaoActivity.this,
-						CategoriaActivity.class);
-				startActivity(i);
-				finish();
+				chamarTelaIniciar();
 				dialog.dismiss();
 			}
 		});
@@ -261,6 +245,31 @@ public class QuestaoActivity extends RoboActivity implements IQuestaoView {
 		dialog.show();
 
 	}
+	
+	public void chamarTelaNiveis(){
+		Intent nivel = new Intent(QuestaoActivity.this,
+				NivelActivity.class);
+		Bundle params = new Bundle();
+		params.putInt(Constantes.CATEGORIA, idCategoria);
+		nivel.putExtras(params);
+		startActivity(nivel);
+		finish();
+	}
+	
+	public void chamarTelaCategoria(){
+		Intent cat = new Intent(QuestaoActivity.this,
+				CategoriaActivity.class);
+		startActivity(cat);
+		finish();
+	}
+	
+	public void chamarTelaIniciar(){
+		Intent i = new Intent(QuestaoActivity.this,
+				IniciarActivity.class);
+		startActivity(i);
+		finish();
+	}
+	
 	
 	@Override
 	public void setQuestao(String questao) {
