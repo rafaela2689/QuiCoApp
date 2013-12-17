@@ -8,18 +8,18 @@
 
     <ImageButton
         android:id="@+id/btnIniciar"
-        android:layout_width="205dp"
-        android:layout_height="75dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
-        android:layout_marginRight="30dp"
-        android:layout_marginTop="65dp"
+        android:layout_marginRight="130dp"
+        android:layout_marginTop="220dp"
         android:background="@drawable/state_bt_jogar" />
 
     <ImageButton
         android:id="@+id/btnAjuda"
-        android:layout_width="205dp"
-        android:layout_height="40dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/btnIniciar"
         android:layout_below="@+id/btnIniciar"
         android:layout_marginTop="6dp"
@@ -27,8 +27,8 @@
 
     <ImageButton
         android:id="@+id/btnSobre"
-        android:layout_width="205dp"
-        android:layout_height="40dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/btnAjuda"
         android:layout_below="@+id/btnAjuda"
         android:layout_marginTop="6dp"

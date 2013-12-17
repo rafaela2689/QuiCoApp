@@ -1,10 +1,11 @@
 package com.android.quiz.presenter;
 
 import android.content.Context;
+import android.view.View.OnClickListener;
 
 import com.android.quiz.view.IQuestaoView;
 
-public interface IQuestaoPresenter {
+public interface IQuestaoPresenter extends OnClickListener {
 
 	public void setIndiceLista(int indiceLista);
 

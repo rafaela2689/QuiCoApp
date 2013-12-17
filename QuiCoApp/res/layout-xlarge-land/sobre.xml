@@ -4,16 +4,14 @@
     android:layout_height="match_parent" 
     android:background="@drawable/bg">
 
-    <TextView
-        android:id="@+id/txtVersao"
+    <ImageView
+        android:id="@+id/imgBackground1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="108dp"
-        android:textColor="#FFFFFF"
-        android:textSize="17sp" 
-        android:text="@string/tv_sobre"/>
+        android:layout_marginTop="152dp"
+        android:src="@drawable/sobre" />
 
     <TextView
         android:id="@+id/txtSobreTeam"
@@ -22,9 +20,9 @@
         android:layout_below="@+id/txtVersao"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="14dp"
+        android:text="@string/tv_sobre_team"
         android:textColor="#FFFFFF"
-        android:textSize="17sp"
-        android:text="@string/tv_sobre_team" />
+        android:textSize="35sp" />
 
     <TextView
         android:id="@+id/txtDanilo"
@@ -32,18 +30,9 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/txtRafaela"
         android:layout_below="@+id/txtAdilio"
+        android:text="@string/tv_danilo" 
         android:textColor="#FFFFFF"
-        android:textSize="17sp" 
-        android:text="@string/tv_danilo"/>
-
-    <ImageView
-        android:id="@+id/imgBackground1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="47dp"
-        android:src="@drawable/sobre" />
+        android:textSize="35sp" />
 
     <TextView
         android:id="@+id/txtRafaela"
@@ -52,9 +41,9 @@
         android:layout_below="@+id/txtSobreTeam"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="15dp"
+        android:text="@string/tv_rafaela"
         android:textColor="#FFFFFF"
-        android:textSize="17sp" 
-        android:text="@string/tv_rafaela"/>
+        android:textSize="35sp" />
 
     <TextView
         android:id="@+id/txtAdilio"
@@ -62,8 +51,19 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/txtRafaela"
         android:layout_centerHorizontal="true"
+        android:text="@string/tv_adilio"
         android:textColor="#FFFFFF"
-        android:textSize="17sp" 
-        android:text="@string/tv_adilio"/>
+        android:textSize="35sp" />
+
+    <TextView
+        android:id="@+id/txtVersao"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imgBackground1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="53dp"
+        android:text="@string/tv_sobre"
+        android:textColor="#FFFFFF"
+        android:textSize="35sp" />
 
 </RelativeLayout>

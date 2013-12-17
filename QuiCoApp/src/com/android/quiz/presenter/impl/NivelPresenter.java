@@ -25,7 +25,7 @@ public class NivelPresenter implements INivelPresenter {
 	
 	public void setNivelView(INivelView nivelView) {
 		this.nivelView = nivelView;
-		
+
 	}
 	
 	// verifica o status do nível para habilitar ou desabilitar os botões

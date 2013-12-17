@@ -4,6 +4,7 @@ import roboguice.activity.RoboActivity;
 import roboguice.inject.ContentView;
 import roboguice.inject.InjectView;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -11,15 +12,18 @@ import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.ImageButton;
 
 import com.android.quiz.R;
 import com.android.quiz.db.DBHelper;
+import com.android.quiz.util.LayoutOrientation;
 
 @ContentView(R.layout.iniciar)
 public class IniciarActivity extends RoboActivity implements OnClickListener {
-
+	
 	@InjectView(R.id.btnIniciar)
 	private ImageButton btnIniciar;
 	
@@ -37,18 +41,14 @@ public class IniciarActivity extends RoboActivity implements OnClickListener {
 		btnAjuda.setOnClickListener(this);
 		btnSobre.setOnClickListener(this);
 		
-		if (isSmartPhone(getApplicationContext()))
+		if (LayoutOrientation.isSmartPhone(getApplicationContext()))
 			setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 		else
 			setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 
+
 	}
 
-	public static boolean isSmartPhone(Context context) {
-		final int screenLayout = context.getResources().getConfiguration().screenLayout;
-		return ((screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) < Configuration.SCREENLAYOUT_SIZE_LARGE);
-	
-	}
 
 	@Override
 	public void onClick(View v) {
@@ -86,21 +86,39 @@ public class IniciarActivity extends RoboActivity implements OnClickListener {
 
 	@Override
 	public void onBackPressed() {
-		AlertDialog.Builder dialogo = new AlertDialog.Builder(this);
-		dialogo.setTitle("Sair");
-		dialogo.setMessage("Tem certeza que deseja sair?");
-		dialogo.setCancelable(false);
-		dialogo.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
-			public void onClick(DialogInterface dialog, int id) {
+		final Dialog dialog = new Dialog(this);
+		
+		dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+
+		dialog.setContentView(R.layout.dialog_sair);
+
+		dialog.setCancelable(false);
+
+		final Button btnSim = (Button) dialog
+				.findViewById(R.id.btnSim);
+		final Button btnNao = (Button) dialog
+				.findViewById(R.id.btnNao);
+
+		btnSim.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
 				finish();
+
 			}
 		});
-		dialogo.setNegativeButton("Não", new DialogInterface.OnClickListener() {
-			public void onClick(DialogInterface dialog, int id) {
+
+		btnNao.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
 				dialog.cancel();
+				dialog.dismiss();
 			}
 		});
-		dialogo.show();
+
+		dialog.show();
+
 	}
 
 	@Override

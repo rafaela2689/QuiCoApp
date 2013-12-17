@@ -17,8 +17,10 @@ import android.widget.TextView;
 
 import com.android.quiz.R;
 import com.android.quiz.presenter.IQuestaoPresenter;
-import com.android.quiz.presenter.impl.QuestaoPresenter;
 import com.android.quiz.util.Constantes;
+import com.android.quiz.util.LayoutOrientation;
+import com.android.quiz.util.TypeFaceUtils;
+import com.android.quiz.util.TypeFont;
 import com.android.quiz.view.IQuestaoView;
 import com.google.inject.Inject;
 
@@ -30,9 +32,6 @@ public class QuestaoActivity extends RoboActivity implements IQuestaoView {
 	
 	@Inject
 	IQuestaoPresenter presenter; 
-	
-	@Inject
-	QuestaoPresenter presen;
 	
 	@InjectView(R.id.txtQuestao)
 	private TextView txQuestao;
@@ -72,23 +71,17 @@ public class QuestaoActivity extends RoboActivity implements IQuestaoView {
 		presenter.loadQuestions();
 
 		// método para evento click do botao
-		btnOpcao1.setOnClickListener(presen);
-		btnOpcao2.setOnClickListener(presen);
-		btnOpcao3.setOnClickListener(presen);
-		btnOpcao4.setOnClickListener(presen);
+		btnOpcao1.setOnClickListener(presenter);
+		btnOpcao2.setOnClickListener(presenter);
+		btnOpcao3.setOnClickListener(presenter);
+		btnOpcao4.setOnClickListener(presenter);
 
-		if (isSmartPhone(getApplicationContext()))
+		if (LayoutOrientation.isSmartPhone(getApplicationContext()))
 			setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 		else
 			setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 
 	}
-
-	public static boolean isSmartPhone(Context context) {
-		final int screenLayout = context.getResources().getConfiguration().screenLayout;
-		return ((screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) < Configuration.SCREENLAYOUT_SIZE_LARGE);
-	}
-
 
 	// método para mostrar a mensagem se ganhar
 	@Override
@@ -217,9 +210,11 @@ public class QuestaoActivity extends RoboActivity implements IQuestaoView {
 	@Override
 	public void onBackPressed() {
 		final Dialog dialog = new Dialog(this);
+		
+		dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
 
 		dialog.setContentView(R.layout.dialog_questao);
-		dialog.setTitle("Sair");
+
 		dialog.setCancelable(false);
 
 		final Button btnContinuar = (Button) dialog
@@ -277,28 +272,34 @@ public class QuestaoActivity extends RoboActivity implements IQuestaoView {
 	
 	@Override
 	public void setQuestao(String questao) {
-		this.txQuestao.setText(questao);
+		this.txQuestao.setText(TypeFaceUtils.getTypeFaceDefault(this, questao,
+				TypeFont.MUSEO_SLAB));
 	}
 	
 	@Override
 	public void setContador(String contador) {
-		this.txtContador.setText(contador);
+		this.txtContador.setText(TypeFaceUtils.getTypeFaceDefault(this, contador,
+				TypeFont.MUSEO_SLAB));
 	}
 	@Override
 	public void setOpcao1(String opcao1) {
-		this.btnOpcao1.setText(opcao1);
+		this.btnOpcao1.setText(TypeFaceUtils.getTypeFaceDefault(this, opcao1,
+				TypeFont.MUSEO_SLAB));
 	}
 	@Override
 	public void setOpcao2(String opcao2) {
-		this.btnOpcao2.setText(opcao2);
+		this.btnOpcao2.setText(TypeFaceUtils.getTypeFaceDefault(this, opcao2,
+				TypeFont.MUSEO_SLAB));
 	}
 	@Override
 	public void setOpcao3(String opcao3) {
-		this.btnOpcao3.setText(opcao3);
+		this.btnOpcao3.setText(TypeFaceUtils.getTypeFaceDefault(this, opcao3,
+				TypeFont.MUSEO_SLAB));
 	}
 	@Override
 	public void setOpcao4(String opcao4) {
-		this.btnOpcao4.setText(opcao4);
+		this.btnOpcao4.setText(TypeFaceUtils.getTypeFaceDefault(this, opcao4,
+				TypeFont.MUSEO_SLAB));
 	}
 
 	@Override

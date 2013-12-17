@@ -58,8 +58,6 @@ public class QuestaoPresenter implements OnClickListener, IQuestaoPresenter{
 			
 			idCatNiv = consultaIdCategoriaNivel();
 			
-			questaoDao = new QuestaoDao();
-			
 			try {
 				qLista = questaoDao.getQuestionSet(idCatNiv, Constantes.NUM_QUESTOES);
 			} catch (Exception e) {

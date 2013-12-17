@@ -6,10 +6,8 @@ import java.util.List;
 import roboguice.activity.RoboActivity;
 import roboguice.inject.ContentView;
 import roboguice.inject.InjectView;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
-import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -19,6 +17,7 @@ import com.android.quiz.R;
 import com.android.quiz.enumerado.NivelEnum;
 import com.android.quiz.presenter.INivelPresenter;
 import com.android.quiz.util.Constantes;
+import com.android.quiz.util.LayoutOrientation;
 import com.android.quiz.view.INivelView;
 import com.google.inject.Inject;
 
@@ -78,18 +77,13 @@ public class NivelActivity extends RoboActivity implements OnClickListener, INiv
 		presenter.setNivelView(this);
 		presenter.verificaStatusCategoriaNivel(idCategoria);
 		
-		if (isSmartPhone(getApplicationContext()))
+		if (LayoutOrientation.isSmartPhone(getApplicationContext()))
 			setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 		else
 			setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-
+		
 	}
 
-	public static boolean isSmartPhone(Context context) {
-		final int screenLayout = context.getResources().getConfiguration().screenLayout;
-		return ((screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) < Configuration.SCREENLAYOUT_SIZE_LARGE);
-	
-	}
 
 	@Override
 	public void onClick(View v) {

@@ -5,13 +5,21 @@
     android:background="@drawable/bg">
 
      <ImageView
+       android:id="@+id/imgInstrucoes"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_centerHorizontal="true"
+       android:layout_marginTop="120dp"
+       android:src="@drawable/instrucoes" />
+
+     <ImageView
        android:id="@+id/imgBackground1"
        android:layout_width="wrap_content"
        android:layout_height="wrap_content"
        android:layout_alignParentLeft="true"
        android:layout_below="@+id/imgInstrucoes"
-       android:layout_marginTop="20dp"
-       android:layout_marginLeft="50dp"
+       android:layout_marginTop="30dp"
+       android:layout_marginLeft="215dp"
        android:src="@drawable/bt_instrucoes2" />
      
     <ImageView
@@ -29,7 +37,7 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/imgBackground2"
         android:layout_below="@+id/imgBackground2"
-        android:layout_marginTop="17dp"
+        android:layout_marginTop="16dp"
         android:src="@drawable/bt_instrucoes2" />
 
     <ImageView
@@ -72,47 +80,39 @@
        android:id="@+id/txtAjuda1"
        android:layout_width="wrap_content"
        android:layout_height="wrap_content"
-       android:layout_alignTop="@+id/imgBackground1"
-       android:layout_marginLeft="35dp"
+       android:layout_alignBottom="@+id/imgBackground1"
+       android:layout_marginLeft="36dp"
        android:layout_toRightOf="@+id/imgBackground1"
+       android:layout_marginTop="25dp"
        android:shadowColor="#000000"
        android:shadowRadius="0.85"
        android:text="@string/tv_ajuda1"
        android:textColor="#FFFFFF"
-       android:textSize="17sp" />
-
-   <TextView
-       android:id="@+id/txtAjuda2"
-       android:layout_width="wrap_content"
-       android:layout_height="wrap_content"
-       android:layout_alignLeft="@+id/txtAjuda1"
-       android:layout_alignTop="@+id/imgBackground2"
-       android:shadowColor="#000000"
-       android:shadowRadius="0.85"
-       android:text="@string/tv_ajuda2"
-       android:textColor="#FFFFFF"
-       android:textSize="17sp" />
+       android:textSize="35sp" />
 
    <TextView
        android:id="@+id/txtAjuda3"
        android:layout_width="wrap_content"
        android:layout_height="wrap_content"
        android:layout_alignLeft="@+id/txtAjuda2"
-       android:layout_alignParentRight="true"
        android:layout_alignTop="@+id/imgBackground3"
+       android:layout_marginTop="22dp"
        android:shadowColor="#000000"
        android:shadowRadius="0.85"
        android:text="@string/tv_ajuda3"
        android:textColor="#FFFFFF"
-       android:textSize="17sp" />
+       android:textSize="35sp" />
 
-   <ImageView
-       android:id="@+id/imgInstrucoes"
+   <TextView
+       android:id="@+id/txtAjuda2"
        android:layout_width="wrap_content"
        android:layout_height="wrap_content"
-       android:layout_alignParentTop="true"
-       android:layout_centerHorizontal="true"
-       android:layout_marginTop="34dp"
-       android:src="@drawable/instrucoes" />
+       android:layout_alignBottom="@+id/imgBackground2"
+       android:layout_alignLeft="@+id/txtAjuda1"
+       android:shadowColor="#000000"
+       android:shadowRadius="0.85"
+       android:text="@string/tv_ajuda2"
+       android:textColor="#FFFFFF"
+       android:textSize="35sp" />
 
 </RelativeLayout>
