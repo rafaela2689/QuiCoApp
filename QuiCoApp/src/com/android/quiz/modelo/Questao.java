@@ -20,26 +20,22 @@ public class Questao {
 	private String opcao3;
 	private String opcao4;
 	private String resposta;
-	private int idCcat;
+	private int idCat;
 	private int idNiv;
 	
 	public Questao(){
 		
 	}
 	
-	public Questao(int id, String questao, String opcao1, String opcao2,
-			String opcao3, String opcao4, String resposta, int idCat,
-			int idNiv) {
+	public Questao(String questao, String opcao1, String opcao2,
+			String opcao3, String opcao4, String resposta) {
 		super();
-		this.id = id;
 		this.questao = questao;
 		this.opcao1 = opcao1;
 		this.opcao2 = opcao2;
 		this.opcao3 = opcao3;
 		this.opcao4 = opcao4;
 		this.resposta = resposta;
-		this.idCcat = idCat;
-		this.idNiv = idNiv;
 	}
 	
 	public int getId() {
@@ -49,10 +45,10 @@ public class Questao {
 		this.id = id;
 	}
 	public int getIdCat() {
-		return idCcat;
+		return idCat;
 	}
 	public void setIdCat(int idCat) {
-		this.idCcat = idCat;
+		this.idCat = idCat;
 	}
 	public int getIdNiv() {
 		return idNiv;

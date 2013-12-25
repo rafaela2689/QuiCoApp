@@ -22,18 +22,18 @@
 
         <TextView
             android:id="@+id/txtQuestao"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="600dp"
+            android:layout_height="150dp"
             android:layout_marginBottom="22dp"
             android:layout_marginTop="150dp"
-            android:gravity="center"
+            android:layout_gravity="center"
             android:textColor="#FFFFFF" 
             android:textSize="22sp"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="15dp"
             android:gravity="center_horizontal"
             android:orientation="vertical"
             android:splitMotionEvents="false" >
@@ -76,7 +76,8 @@
             android:id="@+id/txtContador"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="60dp"
+            android:layout_marginTop="30dp"
+            android:layout_gravity="center"
             android:textColor="#0A0A18" 
             android:textSize="22sp"/>
 

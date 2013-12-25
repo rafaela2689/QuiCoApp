@@ -2,6 +2,7 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android" >
     
     <item android:state_enabled="false" android:drawable="@drawable/nivel_bola_blocked"/>
-    <item android:state_pressed="true" android:drawable="@drawable/nivel_bola_pressed"/>
-	<item android:drawable="@drawable/nivel_bola"/>
+    <item android:state_pressed="true" android:drawable="@drawable/nivel_bola_pressed_2"/>
+	<item android:drawable="@drawable/nivel_bola_2"/>
+
 </selector>

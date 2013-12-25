@@ -18,7 +18,8 @@
         android:layout_height="wrap_content"
         android:background="@drawable/placa_pergunta"
         android:orientation="vertical"
-        android:layout_gravity="center">
+        android:layout_gravity="center"
+        android:splitMotionEvents="false">
       
         <TextView
             android:id="@+id/txtQuestao"
@@ -26,7 +27,8 @@
             android:layout_height="50dp"
             android:layout_gravity="center"
             android:layout_marginTop="75dp"
-            android:textColor="#FFFFFF" />
+            android:textColor="#FFFFFF" 
+            android:textSize="14sp"/>
 
         <TableLayout
             android:layout_width="match_parent"
@@ -38,21 +40,24 @@
                 android:id="@+id/tableRow1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" 
-                android:gravity="center">
+                android:gravity="center"
+                android:splitMotionEvents="false">
 
                 <Button
                     android:id="@+id/btnOpcao1"
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
                     android:background="@drawable/state_bt_questao"
-                    android:textColor="#FFFFFF" />
+                    android:textColor="#FFFFFF"
+                    android:textSize="13sp" />
 
                 <Button
                     android:id="@+id/btnOpcao2"
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
                     android:background="@drawable/state_bt_questao"
-                    android:textColor="#FFFFFF" />
+                    android:textColor="#FFFFFF"
+                    android:textSize="13sp" />
 
             </TableRow>
 
@@ -61,21 +66,24 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center" 
-                android:layout_marginBottom="5dp">
+                android:layout_marginBottom="5dp"
+                android:splitMotionEvents="false">
 
                 <Button
                     android:id="@+id/btnOpcao3"
-                    android:layout_width="200dp"
+                    android:layout_width="205dp"
                     android:layout_height="wrap_content"
                     android:background="@drawable/state_bt_questao"
-                    android:textColor="#FFFFFF" />
+                    android:textColor="#FFFFFF" 
+                    android:textSize="13sp"/>
 
                 <Button
                     android:id="@+id/btnOpcao4"
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
                     android:background="@drawable/state_bt_questao"
-                    android:textColor="#FFFFFF" />
+                    android:textColor="#FFFFFF" 
+                    android:textSize="13sp"/>
 
             </TableRow>
         </TableLayout>
@@ -84,9 +92,10 @@
             android:id="@+id/txtContador"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="14dp"
             android:layout_gravity="center"
-            android:textColor="#0A0A18" />
+            android:textColor="#0A0A18" 
+            android:textSize="14sp"/>
 
     </LinearLayout>
 

@@ -77,9 +77,9 @@ public class NivelActivity extends RoboActivity implements OnClickListener, INiv
 		presenter.setNivelView(this);
 		presenter.verificaStatusCategoriaNivel(idCategoria);
 		
-		if (LayoutOrientation.isSmartPhone(getApplicationContext()))
-			setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-		else
+		if (LayoutOrientation.isSmartPhone(getApplicationContext())){
+			 //setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+		}else
 			setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 		
 	}

@@ -15,4 +15,15 @@ public interface IQuestaoPresenter extends OnClickListener {
 
 	public void inicializar(IQuestaoView questaoView, Context context,
 			int idCategoria, int idNivel);
+	
+	public int getContador();
+	
+	public void setContador(int contador);
+	
+	public String getResposta () ;
+	
+	public void setResposta (String resposta) ;
+	
+	public int getIndiceLista () ;
+	
 }

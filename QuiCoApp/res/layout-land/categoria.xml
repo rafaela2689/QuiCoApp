@@ -15,8 +15,7 @@
         android:layout_marginRight="26dp"
         android:layout_toLeftOf="@+id/imgbtnJogador"
         android:adjustViewBounds="true"
-        android:background="@drawable/state_bt_categoria_selecoes"
-        android:contentDescription="@string/bt_cat_selecao"/>
+        android:background="@drawable/state_bt_categoria_selecoes"/>
 
     <ImageButton
         android:id="@+id/imgbtnCidadeSede"
@@ -26,8 +25,7 @@
         android:layout_marginLeft="28dp"
         android:layout_toRightOf="@+id/imgbtnJogador"
         android:adjustViewBounds="true"
-        android:background="@drawable/state_bt_categoria_curiosidades"
-        android:contentDescription="@string/bt_cat_cidade_sede"/>
+        android:background="@drawable/state_bt_categoria_curiosidades"/>
 
     <ImageView
         android:id="@+id/imgCategorias"
@@ -46,7 +44,6 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="27dp"
         android:adjustViewBounds="true"
-        android:background="@drawable/state_bt_categoria_jogadores"
-        android:contentDescription="@string/bt_cat_jogadores" />
+        android:background="@drawable/state_bt_categoria_jogadores"/>
 
 </RelativeLayout>

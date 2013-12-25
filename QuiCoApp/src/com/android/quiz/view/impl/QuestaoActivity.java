@@ -4,10 +4,8 @@ import roboguice.activity.RoboActivity;
 import roboguice.inject.ContentView;
 import roboguice.inject.InjectView;
 import android.app.Dialog;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
-import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -27,6 +25,15 @@ import com.google.inject.Inject;
 @ContentView(R.layout.questao)
 public class QuestaoActivity extends RoboActivity implements IQuestaoView {
 
+	public static final String QUESTAO = "questao";
+	public static final String OPCAO_1 = "opcao1";
+	public static final String OPCAO_2 = "opcao2";
+	public static final String OPCAO_3 = "opcao3";
+	public static final String OPCAO_4 = "opcao4";
+	public static final String RESPOSTA = "resposta";
+	public static final String CONTADOR = "contador"; 
+	public static final String INDICE_LISTA = "indiceLista";
+	
 	private int nivelAtual;
 	private int idCategoria;
 	
@@ -76,9 +83,9 @@ public class QuestaoActivity extends RoboActivity implements IQuestaoView {
 		btnOpcao3.setOnClickListener(presenter);
 		btnOpcao4.setOnClickListener(presenter);
 
-		if (LayoutOrientation.isSmartPhone(getApplicationContext()))
-			setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-		else
+		if (LayoutOrientation.isSmartPhone(getApplicationContext())){
+			
+		}else
 			setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 
 	}
@@ -322,4 +329,35 @@ public class QuestaoActivity extends RoboActivity implements IQuestaoView {
 	public String getOpcao4() {
 		return btnOpcao4.getText().toString();
 	}
+	
+	@Override
+	protected void onSaveInstanceState (Bundle outState) {
+		
+		super.onSaveInstanceState(outState);
+		
+		outState.putString(QUESTAO, getQuestao());
+		outState.putString(OPCAO_1, getOpcao1());
+		outState.putString(OPCAO_2, getOpcao2());
+		outState.putString(OPCAO_3, getOpcao3());
+		outState.putString(OPCAO_4, getOpcao4());
+		outState.putString(RESPOSTA, presenter.getResposta());
+		outState.putInt(CONTADOR, presenter.getContador());
+		outState.putInt(INDICE_LISTA, presenter.getIndiceLista());
+		
+	}
+	
+	public void onRestoreInstanceState (Bundle outState) {
+		
+		setQuestao(outState.getString(QUESTAO));
+		setOpcao1(outState.getString(OPCAO_1));
+		setOpcao2(outState.getString(OPCAO_2));
+		setOpcao3(outState.getString(OPCAO_3));
+		setOpcao4(outState.getString(OPCAO_4));
+		presenter.setResposta(outState.getString(RESPOSTA));
+		presenter.setContador(outState.getInt(CONTADOR));
+		presenter.setIndiceLista(outState.getInt(INDICE_LISTA));
+		
+		super.onRestoreInstanceState(outState);
+	}
+	
 }

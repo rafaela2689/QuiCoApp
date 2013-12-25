@@ -3,17 +3,13 @@ package com.android.quiz.view.impl;
 import roboguice.activity.RoboActivity;
 import roboguice.inject.ContentView;
 import roboguice.inject.InjectView;
-import android.app.AlertDialog;
 import android.app.Dialog;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
-import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.View;
-import android.view.Window;
 import android.view.View.OnClickListener;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageButton;
 
@@ -41,9 +37,9 @@ public class IniciarActivity extends RoboActivity implements OnClickListener {
 		btnAjuda.setOnClickListener(this);
 		btnSobre.setOnClickListener(this);
 		
-		if (LayoutOrientation.isSmartPhone(getApplicationContext()))
-			setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-		else
+		if (LayoutOrientation.isSmartPhone(getApplicationContext())){
+			//setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+		}else
 			setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 
 
@@ -54,7 +50,7 @@ public class IniciarActivity extends RoboActivity implements OnClickListener {
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.btnIniciar:
-			carregaTelaIniciar();
+			carregaTelaCategoria();
 			break;
 		case R.id.btnAjuda:
 			carregaTelaAjuda();
@@ -67,9 +63,9 @@ public class IniciarActivity extends RoboActivity implements OnClickListener {
 	}
 
 	// chama a tela Iniciar
-	public void carregaTelaIniciar() {
-		Intent telaIniciar = new Intent(IniciarActivity.this, CategoriaActivity.class);
-		startActivity(telaIniciar);
+	public void carregaTelaCategoria() {
+		Intent telaCategoria = new Intent(IniciarActivity.this, CategoriaActivity.class);
+		startActivity(telaCategoria);
 	}
 
 	// chama a tela de Ajuda

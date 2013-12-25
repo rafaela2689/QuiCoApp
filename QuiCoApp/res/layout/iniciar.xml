@@ -2,52 +2,36 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:background="#3CB371"
-    tools:context=".IniciarActivity" >
+    android:background="@drawable/bg_splash_menu_port"
+    tools:context=".IniciarActivity" 
+    android:splitMotionEvents="false"
+    android:layout_gravity="center">
+    
+    <ImageButton
+        android:id="@+id/btnIniciar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="70dp"
+        android:background="@drawable/state_bt_jogar" />
 
     <ImageButton
         android:id="@+id/btnAjuda"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/tituloApp"
-        android:layout_alignRight="@+id/tituloApp"
+        android:layout_alignLeft="@+id/btnIniciar"
         android:layout_below="@+id/btnIniciar"
-        android:layout_marginTop="25dp"
-       	android:src="@drawable/bt_instrucoes" />
+        android:layout_marginTop="6dp"
+        android:background="@drawable/states_bt_instrucoes" />
 
     <ImageButton
         android:id="@+id/btnSobre"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/btnAjuda"
-        android:layout_alignRight="@+id/btnAjuda"
         android:layout_below="@+id/btnAjuda"
-        android:layout_marginTop="31dp"
-       	android:src="@drawable/bt_sobre" />
-
-    <ImageButton
-        android:id="@+id/btnIniciar"
-        android:layout_width="180dp"
-        android:layout_height="80dp"
-        android:layout_alignLeft="@+id/btnAjuda"
-        android:layout_alignRight="@+id/btnAjuda"
-        android:layout_below="@+id/tituloApp"
-        android:layout_marginTop="32dp"
-       	android:src="@drawable/bt_jogar" />
-
-    <TextView
-        android:id="@+id/tituloApp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="67dp"
-        android:background="@drawable/shapetextview"
-        android:text="@string/quiz_copa"
-        android:textSize="20sp" />
+        android:layout_marginTop="6dp"
+        android:background="@drawable/state_bt_sobre" />
 
 </RelativeLayout>

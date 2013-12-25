@@ -9,7 +9,6 @@ import android.view.View.OnClickListener;
 import com.android.quiz.R;
 import com.android.quiz.dao.ICategoriaNivelDao;
 import com.android.quiz.dao.IQuestaoDao;
-import com.android.quiz.dao.impl.QuestaoDao;
 import com.android.quiz.modelo.Questao;
 import com.android.quiz.presenter.IQuestaoPresenter;
 import com.android.quiz.util.Constantes;
@@ -20,8 +19,10 @@ public class QuestaoPresenter implements OnClickListener, IQuestaoPresenter{
 
 	private Questao questaoAtual;
 	
+
+
 	private List<Questao> qLista;
-	
+
 	@Inject
 	private IQuestaoDao questaoDao;
 	
@@ -34,15 +35,12 @@ public class QuestaoPresenter implements OnClickListener, IQuestaoPresenter{
 	
 	private int indiceLista = 0;
 	
-	public void setIndiceLista(int indiceLista) {
-		this.indiceLista = indiceLista;
-	}
-
 	private int idCategoria;
 	
 	private int idNivel;
 	
 	private int idCatNiv;
+	
 	
 	@Override
 	public void inicializar(IQuestaoView questaoView, Context context,
@@ -50,6 +48,7 @@ public class QuestaoPresenter implements OnClickListener, IQuestaoPresenter{
 		this.questaoView = questaoView;
 		this.idCategoria = idCategoria;
 		this.idNivel = idNivel;
+		questaoAtual = new Questao();
 		
 	}
 	
@@ -73,7 +72,6 @@ public class QuestaoPresenter implements OnClickListener, IQuestaoPresenter{
 	
 		@Override
 		public void loadQuestions() {
-			questaoAtual = new Questao();
 
 			questaoAtual = qLista.get(indiceLista);
 			// seta a questao no textView
@@ -155,4 +153,34 @@ public class QuestaoPresenter implements OnClickListener, IQuestaoPresenter{
 			}
 		}
 
+		@Override
+		public int getContador() {
+			
+			return contador;
+			
+		}
+
+		@Override
+		public void setContador(int contador) {
+			
+			this.contador = contador;
+			
+		}
+
+		public String getResposta () {
+			return questaoAtual.getResposta();
+		}
+		
+		public void setResposta (String resposta) {
+			questaoAtual.setResposta(resposta);
+		}
+		
+		public void setIndiceLista(int indiceLista) {
+			this.indiceLista = indiceLista;
+		}
+		
+		public int getIndiceLista() {
+			return indiceLista;
+		}
+	
 }

@@ -32,7 +32,7 @@
             android:layout_marginRight="15dp"
             android:layout_weight="1"
             android:adjustViewBounds="true"
-            android:background="@drawable/bloquear_desbloquear_nivel" />
+            android:background="@drawable/state_bt_nivel_1" />
 
         <ImageButton
             android:id="@+id/imgBtnNivel2"
@@ -42,7 +42,7 @@
             android:layout_marginRight="10dp"
             android:layout_weight="1"
             android:adjustViewBounds="true"
-            android:background="@drawable/bloquear_desbloquear_nivel" />
+            android:background="@drawable/state_bt_nivel_2" />
 
         <ImageButton
             android:id="@+id/imgBtnNivel3"
@@ -51,7 +51,7 @@
             android:layout_marginLeft="15dp"
             android:layout_weight="1"
             android:adjustViewBounds="true"
-            android:background="@drawable/bloquear_desbloquear_nivel" />
+            android:background="@drawable/state_bt_nivel_3" />
     </LinearLayout>
 
     <LinearLayout
@@ -71,7 +71,7 @@
             android:layout_marginRight="15dp"
             android:layout_weight="1"
             android:adjustViewBounds="true"
-            android:background="@drawable/bloquear_desbloquear_nivel" />
+            android:background="@drawable/state_bt_nivel_4" />
 
         <ImageButton
             android:id="@+id/imgBtnNivel5"
@@ -81,7 +81,7 @@
             android:layout_marginRight="15dp"
             android:layout_weight="1"
             android:adjustViewBounds="true"
-            android:background="@drawable/bloquear_desbloquear_nivel" />
+            android:background="@drawable/state_bt_nivel_5" />
 
         <ImageButton
             android:id="@+id/imgBtnNivel6"
@@ -90,7 +90,7 @@
             android:layout_marginLeft="15dp"
             android:layout_weight="1"
             android:adjustViewBounds="true"
-            android:background="@drawable/bloquear_desbloquear_nivel" />
+            android:background="@drawable/state_bt_nivel_6" />
     </LinearLayout>
 
 </RelativeLayout>
