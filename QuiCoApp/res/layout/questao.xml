@@ -27,7 +27,7 @@
             android:layout_marginTop="80dp"
             android:layout_gravity="center" 
             android:textColor="#FFFFFF" 
-            android:textSize="14sp"/>
+            android:textSize="14dp"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -43,7 +43,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/state_bt_questao" 
                 android:textColor="#FFFFFF"
-                android:textSize="13sp" />
+                android:textSize="13dp" />
 
             <Button
                 android:id="@+id/btnOpcao2"
@@ -51,7 +51,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/state_bt_questao"
                 android:textColor="#FFFFFF"
-                android:textSize="13sp"  />
+                android:textSize="13dp"  />
 
             <Button
                 android:id="@+id/btnOpcao3"
@@ -59,7 +59,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/state_bt_questao"
                 android:textColor="#FFFFFF"
-                android:textSize="13sp"  />
+                android:textSize="13dp"  />
 
             <Button
                 android:id="@+id/btnOpcao4"
@@ -67,7 +67,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/state_bt_questao"
                 android:textColor="#FFFFFF"
-                android:textSize="13sp"  />
+                android:textSize="13dp"  />
         </LinearLayout>
 
         <TextView
@@ -77,7 +77,7 @@
             android:layout_marginTop="28dp" 
             android:layout_gravity="center"
             android:textColor="#0A0A18" 
-            android:textSize="14sp"/>
+            android:textSize="14dp"/>
 
     </LinearLayout>
 

@@ -88,7 +88,7 @@
        android:shadowRadius="0.85"
        android:text="@string/tv_ajuda1"
        android:textColor="#FFFFFF"
-       android:textSize="17sp" />
+       android:textSize="17dp" />
 
    <TextView
        android:id="@+id/txtAjuda2"
@@ -100,7 +100,7 @@
        android:shadowRadius="0.85"
        android:text="@string/tv_ajuda2"
        android:textColor="#FFFFFF"
-       android:textSize="17sp" />
+       android:textSize="17dp" />
 
    <TextView
        android:id="@+id/txtAjuda3"
@@ -113,6 +113,6 @@
        android:shadowRadius="0.85"
        android:text="@string/tv_ajuda3"
        android:textColor="#FFFFFF"
-       android:textSize="17sp" />
+       android:textSize="17dp" />
 
 </RelativeLayout>

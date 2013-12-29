@@ -12,7 +12,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="14dp"
         android:textColor="#FFFFFF"
-        android:textSize="17sp"
+        android:textSize="17dp"
         android:text="@string/tv_sobre_team" />
 
     <TextView
@@ -22,7 +22,7 @@
         android:layout_alignLeft="@+id/txtRafaela"
         android:layout_below="@+id/txtAdilio"
         android:textColor="#FFFFFF"
-        android:textSize="17sp" 
+        android:textSize="17dp" 
         android:text="@string/tv_danilo"/>
 
     <TextView
@@ -33,7 +33,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="15dp"
         android:textColor="#FFFFFF"
-        android:textSize="17sp" 
+        android:textSize="17dp" 
         android:text="@string/tv_rafaela"/>
 
     <TextView
@@ -43,7 +43,7 @@
         android:layout_below="@+id/txtRafaela"
         android:layout_centerHorizontal="true"
         android:textColor="#FFFFFF"
-        android:textSize="17sp" 
+        android:textSize="17dp" 
         android:text="@string/tv_adilio"/>
 
     <ImageView
@@ -64,6 +64,6 @@
         android:layout_marginTop="90dp"
         android:text="@string/tv_sobre"
         android:textColor="#FFFFFF"
-        android:textSize="17sp" />
+        android:textSize="17dp" />
 
 </RelativeLayout>
