@@ -71,6 +71,7 @@ public class QuestaoActivity extends RoboActivity implements IQuestaoView {
 		}
 
 		presenter.inicializar(this, getApplicationContext(), idCategoria, nivelAtual);
+		
 		// consulta as questoes no banco de dados
 		presenter.consultaQuestoesBD();
 

@@ -2,6 +2,7 @@ package com.android.quiz.presenter.impl;
 
 import java.util.List;
 
+import roboguice.inject.ContextSingleton;
 import android.content.Context;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -15,6 +16,7 @@ import com.android.quiz.util.Constantes;
 import com.android.quiz.view.IQuestaoView;
 import com.google.inject.Inject;
 
+@ContextSingleton
 public class QuestaoPresenter implements OnClickListener, IQuestaoPresenter{
 
 	private Questao questaoAtual;
